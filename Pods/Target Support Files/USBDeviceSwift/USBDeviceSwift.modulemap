@@ -1,0 +1,6 @@
+framework module USBDeviceSwift {
+  umbrella header "USBDeviceSwift-umbrella.h"
+
+  export *
+  module * { export * }
+}

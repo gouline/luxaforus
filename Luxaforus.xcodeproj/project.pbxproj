@@ -1,0 +1,597 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3D46ACCA1F066A30000F2AD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D46ACC91F066A30000F2AD2 /* AppDelegate.swift */; };
+		3D46ACCE1F066A30000F2AD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D46ACCD1F066A30000F2AD2 /* Assets.xcassets */; };
+		3D46ACD11F066A30000F2AD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D46ACCF1F066A30000F2AD2 /* Main.storyboard */; };
+		3D46ACDC1F066A30000F2AD2 /* LuxaforusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D46ACDB1F066A30000F2AD2 /* LuxaforusTests.swift */; };
+		3D46ACE71F066A30000F2AD2 /* LuxaforusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D46ACE61F066A30000F2AD2 /* LuxaforusUITests.swift */; };
+		F0BA16277E4F86ACCC9ED59A /* Pods_Luxaforus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BAC15124C720B73E146525F /* Pods_Luxaforus.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3D46ACD81F066A30000F2AD2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D46ACBE1F066A30000F2AD2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D46ACC51F066A30000F2AD2;
+			remoteInfo = Luxaforus;
+		};
+		3D46ACE31F066A30000F2AD2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D46ACBE1F066A30000F2AD2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D46ACC51F066A30000F2AD2;
+			remoteInfo = Luxaforus;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3D46ACC61F066A30000F2AD2 /* Luxaforus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Luxaforus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D46ACC91F066A30000F2AD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3D46ACCD1F066A30000F2AD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3D46ACD01F066A30000F2AD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3D46ACD21F066A30000F2AD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D46ACD71F066A30000F2AD2 /* LuxaforusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LuxaforusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D46ACDB1F066A30000F2AD2 /* LuxaforusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuxaforusTests.swift; sourceTree = "<group>"; };
+		3D46ACDD1F066A30000F2AD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D46ACE21F066A30000F2AD2 /* LuxaforusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LuxaforusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D46ACE61F066A30000F2AD2 /* LuxaforusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuxaforusUITests.swift; sourceTree = "<group>"; };
+		3D46ACE81F066A30000F2AD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6260CA446F9EEF23B89D26D7 /* Pods-Luxaforus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Luxaforus.release.xcconfig"; path = "Pods/Target Support Files/Pods-Luxaforus/Pods-Luxaforus.release.xcconfig"; sourceTree = "<group>"; };
+		9BAC15124C720B73E146525F /* Pods_Luxaforus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Luxaforus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A48099DBE08ADE28C00DA5C6 /* Pods-Luxaforus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Luxaforus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Luxaforus/Pods-Luxaforus.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3D46ACC31F066A30000F2AD2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0BA16277E4F86ACCC9ED59A /* Pods_Luxaforus.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D46ACD41F066A30000F2AD2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D46ACDF1F066A30000F2AD2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3D46ACBD1F066A30000F2AD2 = {
+			isa = PBXGroup;
+			children = (
+				3D46ACC81F066A30000F2AD2 /* Luxaforus */,
+				3D46ACDA1F066A30000F2AD2 /* LuxaforusTests */,
+				3D46ACE51F066A30000F2AD2 /* LuxaforusUITests */,
+				3D46ACC71F066A30000F2AD2 /* Products */,
+				EE16572A3C91AFF9AE64E81C /* Pods */,
+				8E0F993456B01747BB8CE0C5 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3D46ACC71F066A30000F2AD2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3D46ACC61F066A30000F2AD2 /* Luxaforus.app */,
+				3D46ACD71F066A30000F2AD2 /* LuxaforusTests.xctest */,
+				3D46ACE21F066A30000F2AD2 /* LuxaforusUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3D46ACC81F066A30000F2AD2 /* Luxaforus */ = {
+			isa = PBXGroup;
+			children = (
+				3D46ACC91F066A30000F2AD2 /* AppDelegate.swift */,
+				3D46ACCD1F066A30000F2AD2 /* Assets.xcassets */,
+				3D46ACCF1F066A30000F2AD2 /* Main.storyboard */,
+				3D46ACD21F066A30000F2AD2 /* Info.plist */,
+			);
+			path = Luxaforus;
+			sourceTree = "<group>";
+		};
+		3D46ACDA1F066A30000F2AD2 /* LuxaforusTests */ = {
+			isa = PBXGroup;
+			children = (
+				3D46ACDB1F066A30000F2AD2 /* LuxaforusTests.swift */,
+				3D46ACDD1F066A30000F2AD2 /* Info.plist */,
+			);
+			path = LuxaforusTests;
+			sourceTree = "<group>";
+		};
+		3D46ACE51F066A30000F2AD2 /* LuxaforusUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3D46ACE61F066A30000F2AD2 /* LuxaforusUITests.swift */,
+				3D46ACE81F066A30000F2AD2 /* Info.plist */,
+			);
+			path = LuxaforusUITests;
+			sourceTree = "<group>";
+		};
+		8E0F993456B01747BB8CE0C5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9BAC15124C720B73E146525F /* Pods_Luxaforus.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EE16572A3C91AFF9AE64E81C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A48099DBE08ADE28C00DA5C6 /* Pods-Luxaforus.debug.xcconfig */,
+				6260CA446F9EEF23B89D26D7 /* Pods-Luxaforus.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3D46ACC51F066A30000F2AD2 /* Luxaforus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D46ACEB1F066A30000F2AD2 /* Build configuration list for PBXNativeTarget "Luxaforus" */;
+			buildPhases = (
+				D1B22C8B7CBF082948673004 /* [CP] Check Pods Manifest.lock */,
+				3D46ACC21F066A30000F2AD2 /* Sources */,
+				3D46ACC31F066A30000F2AD2 /* Frameworks */,
+				3D46ACC41F066A30000F2AD2 /* Resources */,
+				96370DE786493C98C43028CD /* [CP] Embed Pods Frameworks */,
+				A095238C7A2FC624C8E40CA8 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Luxaforus;
+			productName = Luxaforus;
+			productReference = 3D46ACC61F066A30000F2AD2 /* Luxaforus.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3D46ACD61F066A30000F2AD2 /* LuxaforusTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D46ACEE1F066A30000F2AD2 /* Build configuration list for PBXNativeTarget "LuxaforusTests" */;
+			buildPhases = (
+				3D46ACD31F066A30000F2AD2 /* Sources */,
+				3D46ACD41F066A30000F2AD2 /* Frameworks */,
+				3D46ACD51F066A30000F2AD2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3D46ACD91F066A30000F2AD2 /* PBXTargetDependency */,
+			);
+			name = LuxaforusTests;
+			productName = LuxaforusTests;
+			productReference = 3D46ACD71F066A30000F2AD2 /* LuxaforusTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3D46ACE11F066A30000F2AD2 /* LuxaforusUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D46ACF11F066A30000F2AD2 /* Build configuration list for PBXNativeTarget "LuxaforusUITests" */;
+			buildPhases = (
+				3D46ACDE1F066A30000F2AD2 /* Sources */,
+				3D46ACDF1F066A30000F2AD2 /* Frameworks */,
+				3D46ACE01F066A30000F2AD2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3D46ACE41F066A30000F2AD2 /* PBXTargetDependency */,
+			);
+			name = LuxaforusUITests;
+			productName = LuxaforusUITests;
+			productReference = 3D46ACE21F066A30000F2AD2 /* LuxaforusUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3D46ACBE1F066A30000F2AD2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Traversal Space";
+				TargetAttributes = {
+					3D46ACC51F066A30000F2AD2 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
+					3D46ACD61F066A30000F2AD2 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3D46ACC51F066A30000F2AD2;
+					};
+					3D46ACE11F066A30000F2AD2 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3D46ACC51F066A30000F2AD2;
+					};
+				};
+			};
+			buildConfigurationList = 3D46ACC11F066A30000F2AD2 /* Build configuration list for PBXProject "Luxaforus" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3D46ACBD1F066A30000F2AD2;
+			productRefGroup = 3D46ACC71F066A30000F2AD2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3D46ACC51F066A30000F2AD2 /* Luxaforus */,
+				3D46ACD61F066A30000F2AD2 /* LuxaforusTests */,
+				3D46ACE11F066A30000F2AD2 /* LuxaforusUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3D46ACC41F066A30000F2AD2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D46ACCE1F066A30000F2AD2 /* Assets.xcassets in Resources */,
+				3D46ACD11F066A30000F2AD2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D46ACD51F066A30000F2AD2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D46ACE01F066A30000F2AD2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		96370DE786493C98C43028CD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Luxaforus/Pods-Luxaforus-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A095238C7A2FC624C8E40CA8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Luxaforus/Pods-Luxaforus-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1B22C8B7CBF082948673004 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3D46ACC21F066A30000F2AD2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D46ACCA1F066A30000F2AD2 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D46ACD31F066A30000F2AD2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D46ACDC1F066A30000F2AD2 /* LuxaforusTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D46ACDE1F066A30000F2AD2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D46ACE71F066A30000F2AD2 /* LuxaforusUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3D46ACD91F066A30000F2AD2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D46ACC51F066A30000F2AD2 /* Luxaforus */;
+			targetProxy = 3D46ACD81F066A30000F2AD2 /* PBXContainerItemProxy */;
+		};
+		3D46ACE41F066A30000F2AD2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D46ACC51F066A30000F2AD2 /* Luxaforus */;
+			targetProxy = 3D46ACE31F066A30000F2AD2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3D46ACCF1F066A30000F2AD2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D46ACD01F066A30000F2AD2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3D46ACE91F066A30000F2AD2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3D46ACEA1F066A30000F2AD2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		3D46ACEC1F066A30000F2AD2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A48099DBE08ADE28C00DA5C6 /* Pods-Luxaforus.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Luxaforus/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = space.traversal.Luxaforus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		3D46ACED1F066A30000F2AD2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6260CA446F9EEF23B89D26D7 /* Pods-Luxaforus.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Luxaforus/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = space.traversal.Luxaforus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		3D46ACEF1F066A30000F2AD2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = LuxaforusTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = space.traversal.LuxaforusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Luxaforus.app/Contents/MacOS/Luxaforus";
+			};
+			name = Debug;
+		};
+		3D46ACF01F066A30000F2AD2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = LuxaforusTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = space.traversal.LuxaforusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Luxaforus.app/Contents/MacOS/Luxaforus";
+			};
+			name = Release;
+		};
+		3D46ACF21F066A30000F2AD2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = LuxaforusUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = space.traversal.LuxaforusUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Luxaforus;
+			};
+			name = Debug;
+		};
+		3D46ACF31F066A30000F2AD2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = LuxaforusUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = space.traversal.LuxaforusUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Luxaforus;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3D46ACC11F066A30000F2AD2 /* Build configuration list for PBXProject "Luxaforus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D46ACE91F066A30000F2AD2 /* Debug */,
+				3D46ACEA1F066A30000F2AD2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D46ACEB1F066A30000F2AD2 /* Build configuration list for PBXNativeTarget "Luxaforus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D46ACEC1F066A30000F2AD2 /* Debug */,
+				3D46ACED1F066A30000F2AD2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D46ACEE1F066A30000F2AD2 /* Build configuration list for PBXNativeTarget "LuxaforusTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D46ACEF1F066A30000F2AD2 /* Debug */,
+				3D46ACF01F066A30000F2AD2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D46ACF11F066A30000F2AD2 /* Build configuration list for PBXNativeTarget "LuxaforusUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D46ACF21F066A30000F2AD2 /* Debug */,
+				3D46ACF31F066A30000F2AD2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3D46ACBE1F066A30000F2AD2 /* Project object */;
+}

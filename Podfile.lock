@@ -1,0 +1,12 @@
+PODS:
+  - USBDeviceSwift (1.0.0)
+
+DEPENDENCIES:
+  - USBDeviceSwift (~> 1.0.0)
+
+SPEC CHECKSUMS:
+  USBDeviceSwift: cfb5bf04f74e92cb7b54ab91f6db6eca05bbdc85
+
+PODFILE CHECKSUM: 21d07f64d35bca32862786a8ab1133fcbb38c317
+
+COCOAPODS: 1.2.1
