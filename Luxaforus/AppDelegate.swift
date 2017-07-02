@@ -32,9 +32,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Status button
         if let button = statusItem.button {
-            let statusImage = NSImage(named: "StatusBarButtonImage")
-            statusImage?.isTemplate = true
-            button.image = statusImage
             button.action = #selector(statusItemButtonAction(sender:))
         }
         
@@ -57,6 +54,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: Commands
     
     func setDoNotDisturb(_ value: Bool) {
+        if let button = statusItem.button {
+            let statusImage = NSImage(named: value ? "StatusBarButtonImage-Busy" : "StatusBarButtonImage-Available")
+            statusImage?.isTemplate = true
+            button.image = statusImage
+        }
+        
         print("Changed \(value)")
     }
     
