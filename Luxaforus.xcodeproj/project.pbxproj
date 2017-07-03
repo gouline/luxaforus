@@ -14,6 +14,7 @@
 		3D46ACE71F066A30000F2AD2 /* LuxaforusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D46ACE61F066A30000F2AD2 /* LuxaforusUITests.swift */; };
 		3D5178FE1F0A37F9002AB64C /* hid.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5178FA1F0A37F9002AB64C /* hid.c */; };
 		3D5178FF1F0A37F9002AB64C /* LXDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5178FD1F0A37F9002AB64C /* LXDevice.m */; };
+		3DDF72EE1F0A7914004E74C0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDF72ED1F0A7914004E74C0 /* Constants.swift */; };
 		F0BA16277E4F86ACCC9ED59A /* Pods_Luxaforus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BAC15124C720B73E146525F /* Pods_Luxaforus.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		3D5178FB1F0A37F9002AB64C /* hidapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hidapi.h; sourceTree = "<group>"; };
 		3D5178FC1F0A37F9002AB64C /* LXDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXDevice.h; sourceTree = "<group>"; };
 		3D5178FD1F0A37F9002AB64C /* LXDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXDevice.m; sourceTree = "<group>"; };
+		3DDF72ED1F0A7914004E74C0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6260CA446F9EEF23B89D26D7 /* Pods-Luxaforus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Luxaforus.release.xcconfig"; path = "Pods/Target Support Files/Pods-Luxaforus/Pods-Luxaforus.release.xcconfig"; sourceTree = "<group>"; };
 		9BAC15124C720B73E146525F /* Pods_Luxaforus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Luxaforus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A48099DBE08ADE28C00DA5C6 /* Pods-Luxaforus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Luxaforus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Luxaforus/Pods-Luxaforus.debug.xcconfig"; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			children = (
 				3D5179001F0A3807002AB64C /* Driver */,
 				3D46ACC91F066A30000F2AD2 /* AppDelegate.swift */,
+				3DDF72ED1F0A7914004E74C0 /* Constants.swift */,
 				3D46ACCD1F066A30000F2AD2 /* Assets.xcassets */,
 				3D46ACCF1F066A30000F2AD2 /* Main.storyboard */,
 				3D46ACD21F066A30000F2AD2 /* Info.plist */,
@@ -351,6 +354,7 @@
 				3D46ACCA1F066A30000F2AD2 /* AppDelegate.swift in Sources */,
 				3D5178FF1F0A37F9002AB64C /* LXDevice.m in Sources */,
 				3D5178FE1F0A37F9002AB64C /* hid.c in Sources */,
+				3DDF72EE1F0A7914004E74C0 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

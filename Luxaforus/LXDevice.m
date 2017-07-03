@@ -77,7 +77,7 @@
     }
 }
 
-- (void)performLuxoforOperation: (unsigned char *) luxoforOperation
+- (void)performLuxoforOperation:(unsigned char *)luxoforOperation
 {
     hid_device *hidHandle = hid_open(kLuxaforVendorId, kLuxafotProcuctId, NULL);
     

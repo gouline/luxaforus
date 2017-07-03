@@ -9,14 +9,21 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
+    
+    
     let statusItem: NSStatusItem
+    let connectionMenuItem: NSMenuItem
     
     let notificationCenterDefaults: UserDefaults?
     
+    var isScreenLocked = false
+    
     override init() {
         statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
+        connectionMenuItem = NSMenuItem(title: "Status: Unknown", action: nil, keyEquivalent: "")
+        connectionMenuItem.isEnabled = false
         
         notificationCenterDefaults = UserDefaults(suiteName: "com.apple.notificationcenterui")
         
@@ -32,50 +39,41 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Status button
         if let button = statusItem.button {
-            button.action = #selector(statusItemButtonAction(sender:))
+            button.image = createTemplateImage("StatusBarButtonImage-Unknown")
         }
         
         // Status menu
         let menu = NSMenu()
-        menu.addItem(NSMenuItem(title: "Quit Luxaforus", action: #selector(quit(sender:)), keyEquivalent: ""))
+        menu.addItem(connectionMenuItem)
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(NSMenuItem(title: "Set Do Not Disturb shortcut", action: #selector(setKeyboardShortcutAction(sender:)), keyEquivalent: ""))
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(NSMenuItem(title: "Quit Luxaforus", action: #selector(quitAction(sender:)), keyEquivalent: "q"))
+        menu.delegate = self
         statusItem.menu = menu
         
-        // Read initial value
-        let doNotDisturbValue = notificationCenterDefaults?.bool(forKey: "doNotDisturb")
-        setDoNotDisturb(doNotDisturbValue!)
+        // Check initial state
+        checkDoNotDisturb()
         
+        // Add notification listeners
+        DistributedNotificationCenter.default().addObserver(self,
+                                                            selector: #selector(screenIsLockedAction(sender:)),
+                                                            name: NSNotification.Name(rawValue: "com.apple.screenIsLocked"),
+                                                            object: nil)
+        DistributedNotificationCenter.default().addObserver(self,
+                                                            selector: #selector(screenIsUnlockedAction(sender:)),
+                                                            name: NSNotification.Name(rawValue: "com.apple.screenIsUnlocked"),
+                                                            object: nil)
         notificationCenterDefaults?.addObserver(self, forKeyPath: "doNotDisturb", options: .new, context: nil)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
+        // Set light to off color
+        setLightColor(Constants.lightColorOff)
+        
+        // Remove notification listeners
         notificationCenterDefaults?.removeObserver(self, forKeyPath: "doNotDisturb")
-    }
-    
-    // MARK: Commands
-    
-    func setDoNotDisturb(_ value: Bool) {
-        if let button = statusItem.button {
-            let statusImage = NSImage(named: value ? "StatusBarButtonImage-Busy" : "StatusBarButtonImage-Available")
-            statusImage?.isTemplate = true
-            button.image = statusImage
-        }
-        
-        let device = LXDevice.sharedInstance()
-        if device?.connected == true {
-            device?.color = (value ? NSColor.red : NSColor.green).cgColor
-        }
-        
-        print("Changed \(value)")
-    }
-    
-    // MARK: Listeners
-    
-    func statusItemButtonAction(sender: AnyObject) {
-        print("Some action")
-    }
-    
-    func quit(sender: AnyObject) {
-        NSApplication.shared().terminate(self)
+        DistributedNotificationCenter.default().removeObserver(self)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -86,8 +84,85 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    func menuWillOpen(_ menu: NSMenu) {
+        checkConnectionStatus()
+    }
+    
+    // MARK: Commands
+    
+    // Checks Luxafor connection status and updates menu item.
+    func checkConnectionStatus() {
+        let isConnected = LXDevice.sharedInstance().connected
+        connectionMenuItem.title = "Status: " + (isConnected ? "Connected" : "Not connected")
+    }
+    
+    // Reads current value and sets light value.
+    func checkDoNotDisturb() {
+        let doNotDisturbValue = notificationCenterDefaults?.bool(forKey: "doNotDisturb")
+        setDoNotDisturb(doNotDisturbValue!)
+    }
+    
+    // Sets light value according to DND being enabled/disabled.
+    func setDoNotDisturb(_ value: Bool) {
+        if let button = statusItem.button {
+            button.image = createTemplateImage(value ? "StatusBarButtonImage-Busy" : "StatusBarButtonImage-Available")
+        }
+        
+        if !isScreenLocked {
+            setLightColor(value ? Constants.lightColorBusy : Constants.lightColorAvailable)
+        }
+        
+        print("DND: \(value)")
+    }
+    
+    // Sets light color (if device available).
+    func setLightColor(_ color: NSColor) {
+        if let device = LXDevice.sharedInstance(), device.connected == true {
+            device.color = color.cgColor
+        }
+    }
+    
+    // MARK: Selectors
+    
+    // Opens system preferences pane to keyboard shortcuts.
+    func setKeyboardShortcutAction(sender: AnyObject) {
+        let scriptValue = "tell application \"System Preferences\"\n" +
+                            "   activate\n" +
+                            "   reveal anchor \"shortcutsTab\" of pane id \"com.apple.preference.keyboard\"\n" +
+                            "end tell\n"
+        
+        var error: NSDictionary?
+        if let scriptObject = NSAppleScript(source: scriptValue) {
+            scriptObject.executeAndReturnError(&error)
+        }
+    }
+    
+    // Sets light mode for screen off.
+    func screenIsLockedAction(sender: AnyObject) {
+        isScreenLocked = true
+        
+        setLightColor(Constants.lightColorAway)
+        
+        print("Screen locked")
+    }
+    
+    // Resets light mode for screen on.
+    func screenIsUnlockedAction(sender: AnyObject) {
+        isScreenLocked = false
+        
+        checkDoNotDisturb()
+        
+        print("Screen unlocked")
+    }
+    
+    // Terminates application.
+    func quitAction(sender: AnyObject) {
+        NSApplication.shared().terminate(self)
+    }
+    
     // MARK: Utils
     
+    // Shows message with an OK button.
     func criticalError(message: String, informative: String) {
         let alert = NSAlert()
         alert.messageText = message
@@ -96,6 +171,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         alert.addButton(withTitle: "OK")
         alert.runModal()
     }
+    
+    // Creates image by name and sets its 'template' flag on.
+    func createTemplateImage(_ name: String) -> NSImage? {
+        let image = NSImage(named: name)
+        image?.isTemplate = true
+        return image
+    }
 
 }
-
