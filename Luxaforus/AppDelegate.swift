@@ -60,6 +60,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.image = statusImage
         }
         
+        let device = LXDevice.sharedInstance()
+        if device?.connected == true {
+            device?.color = (value ? NSColor.red : NSColor.green).cgColor
+        }
+        
         print("Changed \(value)")
     }
     
