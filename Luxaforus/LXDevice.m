@@ -41,7 +41,6 @@
 - (void)setColor:(CGColorRef)color
 {
     if (CGColorGetNumberOfComponents(color) == 4) {
-        
         _color = color;
         
         const CGFloat *components = CGColorGetComponents(color);
@@ -70,7 +69,6 @@
     if (productivityModeEnabled) {
         [self performLuxoforOperation:kLuxaforOperationSetBlackColor];
         [self performLuxoforOperation:kLuxaforOperationSetPoductivityOn];
-        
     } else {
         [self performLuxoforOperation:kLuxaforOperationSetPoductivityOff];
         [self performLuxoforOperation:kLuxaforOperationSetBlackColor];
@@ -92,7 +90,7 @@
     hid_device *hidHandle = hid_open(kLuxaforVendorId, kLuxafotProcuctId, NULL);
     BOOL connected = hidHandle != NULL;
     
-    if (hidHandle != NULL) {
+    if (connected) {
         hid_close(hidHandle);
     }
     
