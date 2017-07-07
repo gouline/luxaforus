@@ -7,71 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		17F8A3267022E651F3DE0733C69F5DA1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */; };
-		1FAA77CA2B674AE81762CB1533069F44 /* Pods-Luxaforus-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FAB222545EC9B654957FB9B91DCFBD /* Pods-Luxaforus-dummy.m */; };
-		3DB0EEBBCC3D7EFF80F6A1E1F7A90064 /* USBDeviceSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B81B54216F9A61C0E817DD9121097A3 /* USBDeviceSwift-dummy.m */; };
-		458ECDD9552243CE124C1515BC6002F8 /* HIDDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCA8E99CBDFF3D9F4B673D642931445 /* HIDDevice.swift */; };
-		633A2A599375A5BB873C4CA6A466C7E6 /* USBDeviceSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B29ABCACF1A1770A0F30BD8AB7C9330 /* USBDeviceSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8838D56A5242A58B30B4E85E80AA2A5B /* USBDeviceSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DF9CA3D567B7CA7A9D7F3C0CF414901B /* USBDeviceSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8D3D5D36DB86160CB14BFA932820DDEB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */; };
-		9DDE47B4E6123620610668689711A844 /* USBDeviceMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA712AC38DF9E5067DDC2334207C75 /* USBDeviceMonitor.swift */; };
-		ABF19312EAC57C145EEDFB47611EBADE /* Pods-Luxaforus-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 54E176CC35BCD0EF94F42B2A90D8FA49 /* Pods-Luxaforus-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D5A646D60C236F8427972FB6AA914B5E /* USBDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512A46BD545571B3B57534F2F3DDE208 /* USBDevice.swift */; };
-		DE4B42EF6AF824F8863FFE0E38EB4496 /* HIDDeviceMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72B956757361442A5084B83539CAB99 /* HIDDeviceMonitor.swift */; };
+		4B214992ED19ED21CA5E6925D06895E2 /* Pods-Luxaforus-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 54E176CC35BCD0EF94F42B2A90D8FA49 /* Pods-Luxaforus-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A959E35C42707D4F4096EBE9678F7895 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */; };
+		B49A561584CE14C3FCC165C82F7CABDF /* Pods-Luxaforus-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FAB222545EC9B654957FB9B91DCFBD /* Pods-Luxaforus-dummy.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		2C2895D79401481D9E46BA48EE00DEB9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 70CCF274E1114ADABCD99404FDA25191;
-			remoteInfo = USBDeviceSwift;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		0449F52A6277F498ACB79709559D19EB /* Pods_Luxaforus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Luxaforus.framework; path = "Pods-Luxaforus.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12CCCB094B2F2DF4AA8A460D70CFCD6C /* Pods-Luxaforus-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Luxaforus-frameworks.sh"; sourceTree = "<group>"; };
+		15B1DF11213FD5AE4DE3C24663CC0C64 /* Pods_Luxaforus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Luxaforus.framework; path = "Pods-Luxaforus.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
-		2B81B54216F9A61C0E817DD9121097A3 /* USBDeviceSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "USBDeviceSwift-dummy.m"; sourceTree = "<group>"; };
-		301D7705915B01CB1CDAB264EB78F729 /* USBDeviceSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "USBDeviceSwift-prefix.pch"; sourceTree = "<group>"; };
-		34F8D5D59E8A697B171FD507D9E3AA50 /* USBDeviceSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = USBDeviceSwift.modulemap; sourceTree = "<group>"; };
-		36231ABFC94228FE73B7FC55A2371CC5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39FAB222545EC9B654957FB9B91DCFBD /* Pods-Luxaforus-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Luxaforus-dummy.m"; sourceTree = "<group>"; };
 		42F0344A74D6361A4E25CC69E50BC43F /* Pods-Luxaforus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Luxaforus.debug.xcconfig"; sourceTree = "<group>"; };
 		4372AD4150F17301DE64C0C68D7CF311 /* Pods-Luxaforus-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Luxaforus-acknowledgements.markdown"; sourceTree = "<group>"; };
-		4B29ABCACF1A1770A0F30BD8AB7C9330 /* USBDeviceSwift.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = USBDeviceSwift.h; path = Sources/USBDeviceSwift.h; sourceTree = "<group>"; };
-		512A46BD545571B3B57534F2F3DDE208 /* USBDevice.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = USBDevice.swift; path = Sources/USBDevice.swift; sourceTree = "<group>"; };
 		54E176CC35BCD0EF94F42B2A90D8FA49 /* Pods-Luxaforus-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Luxaforus-umbrella.h"; sourceTree = "<group>"; };
 		59B227B6C8C8F98D409384690B7B787D /* Pods-Luxaforus.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Luxaforus.modulemap"; sourceTree = "<group>"; };
-		63B7ED95EB76A0B2A45F6F2DBB4ED2D6 /* USBDeviceSwift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = USBDeviceSwift.xcconfig; sourceTree = "<group>"; };
 		67371436EF01ACB979F6D05A842BE4AC /* Pods-Luxaforus-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Luxaforus-resources.sh"; sourceTree = "<group>"; };
 		7D9E12D197DCF869652BC750A8E07DD8 /* Pods-Luxaforus-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Luxaforus-acknowledgements.plist"; sourceTree = "<group>"; };
-		8BCA8E99CBDFF3D9F4B673D642931445 /* HIDDevice.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HIDDevice.swift; path = Sources/HIDDevice.swift; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		ACDA712AC38DF9E5067DDC2334207C75 /* USBDeviceMonitor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = USBDeviceMonitor.swift; path = Sources/USBDeviceMonitor.swift; sourceTree = "<group>"; };
 		B3E0EF8AF733DF859D3034F9D7F34B81 /* Pods-Luxaforus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Luxaforus.release.xcconfig"; sourceTree = "<group>"; };
-		B72B956757361442A5084B83539CAB99 /* HIDDeviceMonitor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HIDDeviceMonitor.swift; path = Sources/HIDDeviceMonitor.swift; sourceTree = "<group>"; };
-		DF9CA3D567B7CA7A9D7F3C0CF414901B /* USBDeviceSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "USBDeviceSwift-umbrella.h"; sourceTree = "<group>"; };
-		E1054B7373594890C2D0CDFEA00B83B6 /* USBDeviceSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = USBDeviceSwift.framework; path = USBDeviceSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E77BE7AE20BF05EC8EC959C4D4A6FA68 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		52A2245657E12C9C403EC00DD365E4A8 /* Frameworks */ = {
+		B2AFA90A537D47B513E6909D8B6366C4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17F8A3267022E651F3DE0733C69F5DA1 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CC7F325853BB309401CD6DDAD8A3B256 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8D3D5D36DB86160CB14BFA932820DDEB /* Cocoa.framework in Frameworks */,
+				A959E35C42707D4F4096EBE9678F7895 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,15 +46,6 @@
 				270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */,
 			);
 			name = "OS X";
-			sourceTree = "<group>";
-		};
-		34A0261ED7CB4FC20F56CC96E53238FB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				0449F52A6277F498ACB79709559D19EB /* Pods_Luxaforus.framework */,
-				E1054B7373594890C2D0CDFEA00B83B6 /* USBDeviceSwift.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		39E9EE8210D861DFD82346C1F5EB7218 /* Frameworks */ = {
@@ -108,8 +61,7 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				39E9EE8210D861DFD82346C1F5EB7218 /* Frameworks */,
-				F3996DA1DD1B7DFF04BE97388B778828 /* Pods */,
-				34A0261ED7CB4FC20F56CC96E53238FB /* Products */,
+				A4311CACD70E4192E36C060DF2F5E608 /* Products */,
 				846BDA27312CD301FFFBA7A0A62B807E /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -122,18 +74,12 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		88D08FBCDE268B09E2B5BE3879E412BA /* USBDeviceSwift */ = {
+		A4311CACD70E4192E36C060DF2F5E608 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8BCA8E99CBDFF3D9F4B673D642931445 /* HIDDevice.swift */,
-				B72B956757361442A5084B83539CAB99 /* HIDDeviceMonitor.swift */,
-				512A46BD545571B3B57534F2F3DDE208 /* USBDevice.swift */,
-				ACDA712AC38DF9E5067DDC2334207C75 /* USBDeviceMonitor.swift */,
-				4B29ABCACF1A1770A0F30BD8AB7C9330 /* USBDeviceSwift.h */,
-				FFC478CADD3ACD6C30142C6AD7A50A40 /* Support Files */,
+				15B1DF11213FD5AE4DE3C24663CC0C64 /* Pods_Luxaforus.framework */,
 			);
-			name = USBDeviceSwift;
-			path = USBDeviceSwift;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		E8C844DE328017EA026848BCBDB34A3A /* Pods-Luxaforus */ = {
@@ -154,84 +100,35 @@
 			path = "Target Support Files/Pods-Luxaforus";
 			sourceTree = "<group>";
 		};
-		F3996DA1DD1B7DFF04BE97388B778828 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				88D08FBCDE268B09E2B5BE3879E412BA /* USBDeviceSwift */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		FFC478CADD3ACD6C30142C6AD7A50A40 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				36231ABFC94228FE73B7FC55A2371CC5 /* Info.plist */,
-				34F8D5D59E8A697B171FD507D9E3AA50 /* USBDeviceSwift.modulemap */,
-				63B7ED95EB76A0B2A45F6F2DBB4ED2D6 /* USBDeviceSwift.xcconfig */,
-				2B81B54216F9A61C0E817DD9121097A3 /* USBDeviceSwift-dummy.m */,
-				301D7705915B01CB1CDAB264EB78F729 /* USBDeviceSwift-prefix.pch */,
-				DF9CA3D567B7CA7A9D7F3C0CF414901B /* USBDeviceSwift-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/USBDeviceSwift";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		06B6D420845881565DEFE758780AEDEE /* Headers */ = {
+		F41506CC0BC3D246E5BE1CECC8062486 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABF19312EAC57C145EEDFB47611EBADE /* Pods-Luxaforus-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		881FA36C0DBD122DC8B8E428CF0ABF15 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8838D56A5242A58B30B4E85E80AA2A5B /* USBDeviceSwift-umbrella.h in Headers */,
-				633A2A599375A5BB873C4CA6A466C7E6 /* USBDeviceSwift.h in Headers */,
+				4B214992ED19ED21CA5E6925D06895E2 /* Pods-Luxaforus-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		70CCF274E1114ADABCD99404FDA25191 /* USBDeviceSwift */ = {
+		A5CD3810AF22B79322413ECE36317CA8 /* Pods-Luxaforus */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FA9AB91F804F97BC08E5B2397E3036A8 /* Build configuration list for PBXNativeTarget "USBDeviceSwift" */;
+			buildConfigurationList = E66EDA55553CD3018955AF13761B2C39 /* Build configuration list for PBXNativeTarget "Pods-Luxaforus" */;
 			buildPhases = (
-				0A52D488B3F11CE292A25A7A2FFC277E /* Sources */,
-				52A2245657E12C9C403EC00DD365E4A8 /* Frameworks */,
-				881FA36C0DBD122DC8B8E428CF0ABF15 /* Headers */,
+				191BC795A484306C2B02029DEE7A3B65 /* Sources */,
+				B2AFA90A537D47B513E6909D8B6366C4 /* Frameworks */,
+				F41506CC0BC3D246E5BE1CECC8062486 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-			);
-			name = USBDeviceSwift;
-			productName = USBDeviceSwift;
-			productReference = E1054B7373594890C2D0CDFEA00B83B6 /* USBDeviceSwift.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		A65B7B4B2EF35D0F46EA7899E61C962F /* Pods-Luxaforus */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AB990BF03AD4B59036D6B79B4C524AFE /* Build configuration list for PBXNativeTarget "Pods-Luxaforus" */;
-			buildPhases = (
-				22C87DCA65FB206ABC9758B5B87A729B /* Sources */,
-				CC7F325853BB309401CD6DDAD8A3B256 /* Frameworks */,
-				06B6D420845881565DEFE758780AEDEE /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				879F0CF878F7E4B58078115028BE576A /* PBXTargetDependency */,
 			);
 			name = "Pods-Luxaforus";
 			productName = "Pods-Luxaforus";
-			productReference = 0449F52A6277F498ACB79709559D19EB /* Pods_Luxaforus.framework */;
+			productReference = 15B1DF11213FD5AE4DE3C24663CC0C64 /* Pods_Luxaforus.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -251,89 +148,27 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 34A0261ED7CB4FC20F56CC96E53238FB /* Products */;
+			productRefGroup = A4311CACD70E4192E36C060DF2F5E608 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A65B7B4B2EF35D0F46EA7899E61C962F /* Pods-Luxaforus */,
-				70CCF274E1114ADABCD99404FDA25191 /* USBDeviceSwift */,
+				A5CD3810AF22B79322413ECE36317CA8 /* Pods-Luxaforus */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0A52D488B3F11CE292A25A7A2FFC277E /* Sources */ = {
+		191BC795A484306C2B02029DEE7A3B65 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				458ECDD9552243CE124C1515BC6002F8 /* HIDDevice.swift in Sources */,
-				DE4B42EF6AF824F8863FFE0E38EB4496 /* HIDDeviceMonitor.swift in Sources */,
-				D5A646D60C236F8427972FB6AA914B5E /* USBDevice.swift in Sources */,
-				9DDE47B4E6123620610668689711A844 /* USBDeviceMonitor.swift in Sources */,
-				3DB0EEBBCC3D7EFF80F6A1E1F7A90064 /* USBDeviceSwift-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		22C87DCA65FB206ABC9758B5B87A729B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1FAA77CA2B674AE81762CB1533069F44 /* Pods-Luxaforus-dummy.m in Sources */,
+				B49A561584CE14C3FCC165C82F7CABDF /* Pods-Luxaforus-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		879F0CF878F7E4B58078115028BE576A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = USBDeviceSwift;
-			target = 70CCF274E1114ADABCD99404FDA25191 /* USBDeviceSwift */;
-			targetProxy = 2C2895D79401481D9E46BA48EE00DEB9 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		16CEDDB7D0FACE00B3DD1BF235CBE53A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 42F0344A74D6361A4E25CC69E50BC43F /* Pods-Luxaforus.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_VERSION = A;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-Luxaforus/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MODULEMAP_FILE = "Target Support Files/Pods-Luxaforus/Pods-Luxaforus.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_Luxaforus;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		337AD37B27D7FFADF01DD8D7FE35B27B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -382,7 +217,7 @@
 			};
 			name = Debug;
 		};
-		4D8BEAF6A8C09B2C8889B5AF858981AE /* Release */ = {
+		4DDCE6EC31ACA4F2D63B39D2E788EF04 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3E0EF8AF733DF859D3034F9D7F34B81 /* Pods-Luxaforus.release.xcconfig */;
 			buildSettings = {
@@ -414,51 +249,14 @@
 				PRODUCT_NAME = Pods_Luxaforus;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		61C9CD039BF46309B12EDF2B9558CFFC /* Release */ = {
+		B1FBB8EAF6B09AE67A46D0055D4E0CD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63B7ED95EB76A0B2A45F6F2DBB4ED2D6 /* USBDeviceSwift.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_VERSION = A;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/USBDeviceSwift/USBDeviceSwift-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/USBDeviceSwift/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MODULEMAP_FILE = "Target Support Files/USBDeviceSwift/USBDeviceSwift.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = USBDeviceSwift;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		E53BC02BCDD519FA3F91B3DF4B0CFFCC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63B7ED95EB76A0B2A45F6F2DBB4ED2D6 /* USBDeviceSwift.xcconfig */;
+			baseConfigurationReference = 42F0344A74D6361A4E25CC69E50BC43F /* Pods-Luxaforus.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -474,19 +272,20 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_VERSION = A;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/USBDeviceSwift/USBDeviceSwift-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/USBDeviceSwift/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-Luxaforus/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MODULEMAP_FILE = "Target Support Files/USBDeviceSwift/USBDeviceSwift.modulemap";
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MODULEMAP_FILE = "Target Support Files/Pods-Luxaforus/Pods-Luxaforus.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = USBDeviceSwift;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Luxaforus;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -548,20 +347,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AB990BF03AD4B59036D6B79B4C524AFE /* Build configuration list for PBXNativeTarget "Pods-Luxaforus" */ = {
+		E66EDA55553CD3018955AF13761B2C39 /* Build configuration list for PBXNativeTarget "Pods-Luxaforus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				16CEDDB7D0FACE00B3DD1BF235CBE53A /* Debug */,
-				4D8BEAF6A8C09B2C8889B5AF858981AE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FA9AB91F804F97BC08E5B2397E3036A8 /* Build configuration list for PBXNativeTarget "USBDeviceSwift" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E53BC02BCDD519FA3F91B3DF4B0CFFCC /* Debug */,
-				61C9CD039BF46309B12EDF2B9558CFFC /* Release */,
+				B1FBB8EAF6B09AE67A46D0055D4E0CD7 /* Debug */,
+				4DDCE6EC31ACA4F2D63B39D2E788EF04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
