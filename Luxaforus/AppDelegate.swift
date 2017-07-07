@@ -10,9 +10,6 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
-
-    
-    
     let statusItem: NSStatusItem
     let connectionMenuItem: NSMenuItem
     
@@ -26,6 +23,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         connectionMenuItem.isEnabled = false
         
         notificationCenterDefaults = UserDefaults(suiteName: "com.apple.notificationcenterui")
+        
+        let device = LXDevice.sharedInstance()
+        device?.transitionSpeed = 30
         
         super.init()
     }
