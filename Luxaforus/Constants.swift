@@ -13,7 +13,5 @@ struct Constants {
     /* Light colors */
     static let lightColorAvailable = NSColor.green
     static let lightColorBusy = NSColor.red
-    static let lightColorAway = NSColor.yellow
-    static let lightColorOff = NSColor.black
     
 }

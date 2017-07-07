@@ -53,6 +53,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         statusItem.menu = menu
         
         // Check initial state
+        setLightDisabled(false)
+        checkConnectionStatus()
         checkDoNotDisturb()
         
         // Add notification listeners
@@ -68,8 +70,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Set light to off color
-        setLightColor(Constants.lightColorOff)
+        setLightDisabled(true)
         
         // Remove notification listeners
         notificationCenterDefaults?.removeObserver(self, forKeyPath: "doNotDisturb")
@@ -86,6 +87,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     
     func menuWillOpen(_ menu: NSMenu) {
         checkConnectionStatus()
+        checkDoNotDisturb()
     }
     
     // MARK: Commands
@@ -122,6 +124,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         }
     }
     
+    // Disables light, which turns it off until re-enabled (if device available).
+    func setLightDisabled(_ disabled: Bool) {
+        if let device = LXDevice.sharedInstance(), device.connected == true {
+            device.lightDisabled = disabled
+        }
+    }
+    
     // MARK: Selectors
     
     // Opens system preferences pane to keyboard shortcuts.
@@ -141,7 +150,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     func screenIsLockedAction(sender: AnyObject) {
         isScreenLocked = true
         
-        setLightColor(Constants.lightColorAway)
+        setLightDisabled(true)
         
         print("Screen locked")
     }
@@ -150,6 +159,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     func screenIsUnlockedAction(sender: AnyObject) {
         isScreenLocked = false
         
+        setLightDisabled(false)
         checkDoNotDisturb()
         
         print("Screen unlocked")

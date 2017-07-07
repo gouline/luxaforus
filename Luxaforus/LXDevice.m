@@ -40,6 +40,8 @@
 
 - (void)setColor:(CGColorRef)color
 {
+    if (_lightDisabled) return;
+    
     if (CGColorGetNumberOfComponents(color) == 4) {
         _color = color;
         
@@ -62,8 +64,21 @@
     }
 }
 
+- (void)setLightDisabled:(BOOL)lightDisabled
+{
+    _lightDisabled = lightDisabled;
+    
+    if (lightDisabled) {
+        [self performLuxoforOperation:kLuxaforOperationSetBlackColor];
+    } else {
+        [self setColor:_color];
+    }
+}
+
 - (void)setProductivityModeEnabled:(BOOL)productivityModeEnabled
 {
+    if (_lightDisabled) return;
+    
     _productivityModeEnabled = productivityModeEnabled;
     
     if (productivityModeEnabled) {
