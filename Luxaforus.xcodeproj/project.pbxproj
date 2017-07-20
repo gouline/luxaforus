@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D3488A91F20AA3800CCCB4D /* StateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3488A81F20AA3800CCCB4D /* StateObserver.swift */; };
+		3D3488AB1F20C05A00CCCB4D /* UiHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3488AA1F20C05A00CCCB4D /* UiHelper.swift */; };
 		3D46ACCA1F066A30000F2AD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D46ACC91F066A30000F2AD2 /* AppDelegate.swift */; };
 		3D46ACCE1F066A30000F2AD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D46ACCD1F066A30000F2AD2 /* Assets.xcassets */; };
 		3D46ACD11F066A30000F2AD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D46ACCF1F066A30000F2AD2 /* Main.storyboard */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D3488A81F20AA3800CCCB4D /* StateObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateObserver.swift; sourceTree = "<group>"; };
+		3D3488AA1F20C05A00CCCB4D /* UiHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UiHelper.swift; sourceTree = "<group>"; };
 		3D46ACC61F066A30000F2AD2 /* Luxaforus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Luxaforus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D46ACC91F066A30000F2AD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D46ACCD1F066A30000F2AD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -84,6 +88,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D3488AC1F20C06200CCCB4D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3D3488AA1F20C05A00CCCB4D /* UiHelper.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		3D3488AD1F20C07400CCCB4D /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				3DDF72ED1F0A7914004E74C0 /* Constants.swift */,
+				3D3488A81F20AA3800CCCB4D /* StateObserver.swift */,
+			);
+			name = Logic;
+			sourceTree = "<group>";
+		};
 		3D46ACBD1F066A30000F2AD2 = {
 			isa = PBXGroup;
 			children = (
@@ -110,8 +131,9 @@
 			isa = PBXGroup;
 			children = (
 				3D5179001F0A3807002AB64C /* Driver */,
+				3D3488AD1F20C07400CCCB4D /* Logic */,
+				3D3488AC1F20C06200CCCB4D /* Helpers */,
 				3D46ACC91F066A30000F2AD2 /* AppDelegate.swift */,
-				3DDF72ED1F0A7914004E74C0 /* Constants.swift */,
 				3D46ACCD1F066A30000F2AD2 /* Assets.xcassets */,
 				3D46ACCF1F066A30000F2AD2 /* Main.storyboard */,
 				3D46ACD21F066A30000F2AD2 /* Info.plist */,
@@ -354,6 +376,8 @@
 				3D46ACCA1F066A30000F2AD2 /* AppDelegate.swift in Sources */,
 				3D5178FF1F0A37F9002AB64C /* LXDevice.m in Sources */,
 				3D5178FE1F0A37F9002AB64C /* hid.c in Sources */,
+				3D3488AB1F20C05A00CCCB4D /* UiHelper.swift in Sources */,
+				3D3488A91F20AA3800CCCB4D /* StateObserver.swift in Sources */,
 				3DDF72EE1F0A7914004E74C0 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

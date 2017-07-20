@@ -13,5 +13,6 @@ struct Constants {
     /* Light colors */
     static let lightColorAvailable = NSColor.green
     static let lightColorBusy = NSColor.red
+    static let lightColorLocked = NSColor.black.withAlphaComponent(0)
     
 }
