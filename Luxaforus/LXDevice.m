@@ -14,17 +14,8 @@
 
 #define kLuxaforOperationSize 9
 
-#define kLuxaforOperationSetRedColor        ((unsigned char *)"\0\0R")
-#define kLuxaforOperationSetGreenColor      ((unsigned char *)"\0\0G")
-#define kLuxaforOperationSetBlueColor       ((unsigned char *)"\0\0B")
-#define kLuxaforOperationSetCyanColor       ((unsigned char *)"\0\0C")
-#define kLuxaforOperationSetMagentaColor    ((unsigned char *)"\0\0M")
-#define kLuxaforOperationSetYellowColor     ((unsigned char *)"\0\0Y")
 #define kLuxaforOperationSetWhiteColor      ((unsigned char *)"\0\0W")
 #define kLuxaforOperationSetBlackColor      ((unsigned char *)"\0\0O")
-
-#define kLuxaforOperationSetPoductivityOn   ((unsigned char *)"\0\nE")
-#define kLuxaforOperationSetPoductivityOff  ((unsigned char *)"\0\nD")
 
 @implementation LXDevice
 
@@ -40,8 +31,6 @@
 
 - (void)setColor:(CGColorRef)color
 {
-    if (_lightDisabled) return;
-    
     if (CGColorGetNumberOfComponents(color) == 4) {
         _color = color;
         
@@ -61,32 +50,6 @@
         luxaforOperation[6] = _transitionSpeed;  //transition speed
         
         [self performLuxoforOperation:luxaforOperation];
-    }
-}
-
-- (void)setLightDisabled:(BOOL)lightDisabled
-{
-    _lightDisabled = lightDisabled;
-    
-    if (lightDisabled) {
-        [self performLuxoforOperation:kLuxaforOperationSetBlackColor];
-    } else {
-        [self setColor:_color];
-    }
-}
-
-- (void)setProductivityModeEnabled:(BOOL)productivityModeEnabled
-{
-    if (_lightDisabled) return;
-    
-    _productivityModeEnabled = productivityModeEnabled;
-    
-    if (productivityModeEnabled) {
-        [self performLuxoforOperation:kLuxaforOperationSetBlackColor];
-        [self performLuxoforOperation:kLuxaforOperationSetPoductivityOn];
-    } else {
-        [self performLuxoforOperation:kLuxaforOperationSetPoductivityOff];
-        [self performLuxoforOperation:kLuxaforOperationSetBlackColor];
     }
 }
 

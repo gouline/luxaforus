@@ -15,8 +15,6 @@
 
 @property (nonatomic) CGColorRef color;
 @property (nonatomic) char transitionSpeed;
-@property (nonatomic) BOOL lightDisabled;
-@property (nonatomic) BOOL productivityModeEnabled;
 @property (nonatomic) BOOL connected;
 
 @end

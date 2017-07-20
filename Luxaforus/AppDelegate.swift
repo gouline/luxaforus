@@ -9,19 +9,15 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, StateObserverDelegate {
-    
-    let statusItem: NSStatusItem
-    let connectionMenuItem: NSMenuItem
+class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuControllerDelegate {
     
     let stateObserver = StateObserver()
+    let menuController = MenuController()
     
     override init() {
-        statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
-        connectionMenuItem = NSMenuItem(title: "Status: Unknown", action: nil, keyEquivalent: "")
-        connectionMenuItem.isEnabled = false
-        
         super.init()
+        
+        menuController.delegate = self
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -35,33 +31,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, StateObserve
         
         LXDevice.sharedInstance()?.transitionSpeed = 30
         
-        // Status button
-        if let button = statusItem.button {
-            button.image = UiHelper.createTemplateImage("StatusBarButtonImage-Unknown")
-        }
-        
-        // Status menu
-        let menu = NSMenu()
-        menu.addItem(connectionMenuItem)
-        menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Set Do Not Disturb shortcut", action: #selector(setKeyboardShortcutAction(sender:)), keyEquivalent: ""))
-        menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Quit Luxaforus", action: #selector(quitAction(sender:)), keyEquivalent: "q"))
-        menu.delegate = self
-        statusItem.menu = menu
-        
-        // Check initial state
-        reload()
+        // Status button and menu
+        //statusItem.button?.image = UiHelper.createTemplateImage("StatusBarButtonImage-Unknown")
         
         stateObserver.attach(delegate: self)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         stateObserver.detach()
-    }
-    
-    func menuWillOpen(_ menu: NSMenu) {
-        reload()
     }
     
     // MARK: StateObserverDelegate
@@ -82,30 +59,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, StateObserve
             device.color = color.cgColor
         }
         
-        if let button = statusItem.button {
-            button.image = UiHelper.createTemplateImage(imageName)
-        }
+        print(imageName)
+        
+        //statusItem.button?.image = UiHelper.createTemplateImage(imageName)
     }
     
-    // MARK: Commands
+    // MARK: MenuControllerDelegate
     
-    // Refreshes UI elements.
-    func reload() {
+    func menuWillOpen() {
         stateObserver.reload()
         
-        connectionMenuItem.title = "Status: " + (LXDevice.sharedInstance()?.connected == true ? "Connected" : "Not connected")
-    }
-    
-    // MARK: Selectors
-    
-    // Opens system preferences pane to keyboard shortcuts.
-    func setKeyboardShortcutAction(sender: AnyObject) {
-        UiHelper.preferencesKeyboardShortcuts()
-    }
-    
-    // Terminates application.
-    func quitAction(sender: AnyObject) {
-        NSApplication.shared().terminate(self)
+        menuController.update(connectionState: LXDevice.sharedInstance()?.connected == true ? .connected : .disconnected)
     }
 
 }
