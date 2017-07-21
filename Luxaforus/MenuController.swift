@@ -32,12 +32,12 @@ class MenuController: NSObject, NSMenuDelegate {
         
         let preferencesMenu = NSMenu()
         
-        dimStateItem = NSMenuItem(title: "Dim light", action: #selector(changeDimStateAction(sender:)), keyEquivalent: "")
+        dimStateItem = NSMenuItem(title: "Dim Light", action: #selector(changeDimStateAction(sender:)), keyEquivalent: "")
         preferencesMenu.addItem(dimStateItem)
         
         preferencesMenu.addItem(NSMenuItem.separator())
         
-        let setKeyboardShortcutItem = NSMenuItem(title: "Set keyboard shortcut", action: #selector(setKeyboardShortcutAction(sender:)), keyEquivalent: "")
+        let setKeyboardShortcutItem = NSMenuItem(title: "Set Keyboard Shortcut…", action: #selector(setKeyboardShortcutAction(sender:)), keyEquivalent: "")
         preferencesMenu.addItem(setKeyboardShortcutItem)
         
         preferencesItem.submenu = preferencesMenu

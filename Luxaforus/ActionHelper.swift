@@ -10,16 +10,6 @@ import Foundation
 
 class ActionHelper {
     
-    /// Shows message with an OK button.
-    static func criticalErrorAlert(message: String, informative: String) {
-        let alert = NSAlert()
-        alert.messageText = message
-        alert.informativeText = informative
-        alert.alertStyle = .critical
-        alert.addButton(withTitle: "OK")
-        alert.runModal()
-    }
-    
     /// Opens system preferences pane to keyboard shortcuts.
     static func preferencesKeyboardShortcuts() {
         let scriptValue = "tell application \"System Preferences\"\n"

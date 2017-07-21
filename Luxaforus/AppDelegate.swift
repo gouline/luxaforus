@@ -25,10 +25,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Check that Notification Center defaults can be inaccessible
         if !stateObserver.checkNotificationCenterAvailable() {
-            ActionHelper.criticalErrorAlert(
-                message: "This application requires the Notification Center, which cannot be found.",
-                informative: "You must be running macOS before OS X 10.8, which is currently not supported.")
-            NSApplication.shared().terminate(self)
+            let alert = NSAlert()
+            alert.messageText = "This application requires the Notification Center, which cannot be found."
+            alert.informativeText = "You must be running macOS before OS X 10.8, which is currently not supported."
+            alert.alertStyle = .critical
+            alert.addButton(withTitle: "OK")
+            if alert.runModal() == NSAlertFirstButtonReturn {
+                NSApplication.shared().terminate(self)
+            }
         }
         
         lightController.update(transitionSpeed: 30)
@@ -81,7 +85,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
         case .dimState(let enabled):
             update(lightDimmed: enabled, updatePreference: true, updateMenu: false)
         case .setKeyboardShortcut:
-            ActionHelper.preferencesKeyboardShortcuts()
+            let alert = NSAlert()
+            alert.messageText = "Open keyboard shortcuts?"
+            alert.informativeText = "Select 'Mission Control' from the sidebar, enable 'Turn Do Not Disturb On/Off' and double-click the keyboard shortcut to set a new one."
+            alert.alertStyle = .informational
+            alert.addButton(withTitle: "Proceed")
+            alert.addButton(withTitle: "Cancel")
+            if alert.runModal() == NSAlertFirstButtonReturn {
+                ActionHelper.preferencesKeyboardShortcuts()
+            }
         case .quit:
             NSApplication.shared().terminate(self)
         }

@@ -53,6 +53,11 @@ class StateObserver: NSObject {
     
     /// Detaches state observers when application closes.
     func detach() {
+        // Check that a delegate was attached
+        if delegate == nil {
+            return
+        }
+        
         // Remove Do Not Disturb mode observer
         notificationCenterDefaults?.removeObserver(self, forKeyPath: "doNotDisturb")
         
