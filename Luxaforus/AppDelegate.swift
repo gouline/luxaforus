@@ -23,7 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Check that Notification Center defaults can be inaccessible
         if !stateObserver.checkNotificationCenterAvailable() {
-            UiHelper.criticalErrorAlert(
+            ActionHelper.criticalErrorAlert(
                 message: "This application requires the Notification Center, which cannot be found.",
                 informative: "You must be running macOS before OS X 10.8, which is currently not supported.")
             NSApplication.shared().terminate(self)
@@ -31,8 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
         
         LXDevice.sharedInstance()?.transitionSpeed = 30
         
-        // Status button and menu
-        //statusItem.button?.image = UiHelper.createTemplateImage("StatusBarButtonImage-Unknown")
+        menuController.update(imageState: MenuImageState.unknown)
         
         stateObserver.attach(delegate: self)
     }
@@ -41,17 +40,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
         stateObserver.detach()
     }
     
-    // MARK: StateObserverDelegate
+    // MARK: - StateObserverDelegate
     
     func stateObserver(valueChanged value: StateObserverValue) {
-        let (color, imageName) = { () -> (NSColor, String) in
+        let (color, imageState) = { () -> (NSColor, MenuImageState) in
             switch value {
             case .doNotDisturbOff:
-                return (Constants.lightColorAvailable, "StatusBarButtonImage-Available")
+                return (LightColor.available, .available)
             case .doNotDisturbOn:
-                return (Constants.lightColorBusy, "StatusBarButtonImage-Busy")
+                return (LightColor.busy, .busy)
             case .screenLocked, .detached:
-                return (Constants.lightColorLocked, "StatusBarButtonImage-Unknown")
+                return (LightColor.locked, .unknown)
             }
         }()
         
@@ -59,17 +58,32 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
             device.color = color.cgColor
         }
         
-        print(imageName)
-        
-        //statusItem.button?.image = UiHelper.createTemplateImage(imageName)
+        menuController.update(imageState: imageState)
     }
     
-    // MARK: MenuControllerDelegate
+    // MARK: - MenuControllerDelegate
     
     func menuWillOpen() {
         stateObserver.reload()
         
         menuController.update(connectionState: LXDevice.sharedInstance()?.connected == true ? .connected : .disconnected)
     }
+    
+    func menu(action theAction: MenuAction) {
+        switch theAction {
+        case .setKeyboardShortcut:
+            ActionHelper.preferencesKeyboardShortcuts()
+        case .quit:
+            NSApplication.shared().terminate(self)
+        }
+    }
 
+}
+
+
+/// Color states for the light.
+class LightColor {
+    static let available = NSColor.green
+    static let busy = NSColor.red
+    static let locked = NSColor.black
 }

@@ -17,7 +17,7 @@ class StateObserver: NSObject {
     private(set) var isDoNotDisturb = false
     private(set) var isScreenLocked = false
     
-    // Checks if notification center is available.
+    /// Checks if notification center is available.
     var isNotificationCenterAvailable: Bool {
         get {
             return notificationCenterDefaults != nil
@@ -28,9 +28,9 @@ class StateObserver: NSObject {
         notificationCenterDefaults = UserDefaults(suiteName: "com.apple.notificationcenterui")
     }
     
-    // MARK: Lifecycle
+    // MARK: - Lifecycle
     
-    // Attaches state observers when application starts up.
+    /// Attaches state observers when application starts up.
     func attach(delegate theDelegate: StateObserverDelegate) {
         delegate = theDelegate
         
@@ -51,7 +51,7 @@ class StateObserver: NSObject {
         reload()
     }
     
-    // Detaches state observers when application closes.
+    /// Detaches state observers when application closes.
     func detach() {
         // Remove Do Not Disturb mode observer
         notificationCenterDefaults?.removeObserver(self, forKeyPath: "doNotDisturb")
@@ -63,19 +63,19 @@ class StateObserver: NSObject {
         delegate = nil
     }
     
-    // MARK: Checks
+    // MARK: - Checks
     
-    // Checks if notification
+    /// Checks if notification
     func checkNotificationCenterAvailable() -> Bool {
         return notificationCenterDefaults != nil
     }
     
-    // Refreshes states that can be read without notifications.
+    /// Refreshes states that can be read without notifications.
     func reload() {
         update(isDoNotDisturb: notificationCenterDefaults?.bool(forKey: "doNotDisturb") ?? false)
     }
     
-    // MARK: Observers
+    // MARK: - Observers
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "doNotDisturb" {
@@ -93,7 +93,7 @@ class StateObserver: NSObject {
         update(isScreenLocked: false)
     }
     
-    // MARK: Updaters
+    // MARK: - Updaters
     
     private func update(isDoNotDisturb newValue: Bool) {
         isDoNotDisturb = newValue
@@ -121,23 +121,23 @@ class StateObserver: NSObject {
 
 protocol StateObserverDelegate: class {
 
-    // State changed to a new one.
+    /// State changed to a new one.
     func stateObserver(valueChanged value: StateObserverValue)
     
 }
 
 enum StateObserverValue {
     
-    // Do Not Disturb enabled (screen unlocked).
+    /// Do Not Disturb enabled (screen unlocked).
     case doNotDisturbOn
     
-    // Do Not Diturb disabled (screen unlocked).
+    /// Do Not Diturb disabled (screen unlocked).
     case doNotDisturbOff
     
-    // Screen locked (or sleep mode).
+    /// Screen locked (or sleep mode).
     case screenLocked
     
-    // Observer got detached.
+    /// Observer got detached.
     case detached
     
 }

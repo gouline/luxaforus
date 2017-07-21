@@ -14,9 +14,6 @@
 
 #define kLuxaforOperationSize 9
 
-#define kLuxaforOperationSetWhiteColor      ((unsigned char *)"\0\0W")
-#define kLuxaforOperationSetBlackColor      ((unsigned char *)"\0\0O")
-
 @implementation LXDevice
 
 + (LXDevice *)sharedInstance
@@ -31,26 +28,34 @@
 
 - (void)setColor:(CGColorRef)color
 {
-    if (CGColorGetNumberOfComponents(color) == 4) {
-        _color = color;
-        
-        const CGFloat *components = CGColorGetComponents(color);
-        char red = (char)(components[0] * 255);
-        char green = (char)(components[1] * 255);
-        char blue = (char)(components[2] * 255);
-        
-        unsigned char luxaforOperation[kLuxaforOperationSize];
-        
-        luxaforOperation[0] = 0x0;   //report id
-        luxaforOperation[1] = 2;     //continious transition
-        luxaforOperation[2] = 0xFF;  //all leds
-        luxaforOperation[3] = red;   //red color component
-        luxaforOperation[4] = green; //green color component
-        luxaforOperation[5] = blue;  //blue color component
-        luxaforOperation[6] = _transitionSpeed;  //transition speed
-        
-        [self performLuxoforOperation:luxaforOperation];
+    size_t componentCount = CGColorGetNumberOfComponents(color);
+    const CGFloat *components = CGColorGetComponents(color);
+    
+    char red, green, blue;
+    
+    if (componentCount == 4) { // RGB
+        CGFloat alpha = components[3];
+        red = (char)(components[0] * alpha * 255);
+        green = (char)(components[1] * alpha * 255);
+        blue = (char)(components[2] * alpha * 255);
+    } else if (componentCount == 2) { // Gray
+        CGFloat alpha = components[1];
+        red = green = blue = (char)(components[0] * alpha * 255);
+    } else {
+        return;
     }
+    
+    unsigned char luxaforOperation[kLuxaforOperationSize];
+    
+    luxaforOperation[0] = 0x0;   //report id
+    luxaforOperation[1] = 2;     //continious transition
+    luxaforOperation[2] = 0xFF;  //all leds
+    luxaforOperation[3] = red;   //red color component
+    luxaforOperation[4] = green; //green color component
+    luxaforOperation[5] = blue;  //blue color component
+    luxaforOperation[6] = _transitionSpeed;  //transition speed
+    
+    [self performLuxoforOperation:luxaforOperation];
 }
 
 - (void)performLuxoforOperation:(unsigned char *)luxoforOperation
