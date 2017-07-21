@@ -10,11 +10,12 @@ import Cocoa
 
 class MenuController: NSObject, NSMenuDelegate {
     
-    let statusItem: NSStatusItem
+    private let statusItem: NSStatusItem
     
-    let menu = NSMenu()
+    private let menu = NSMenu()
     
     private let connectionItem: NSMenuItem
+    private let dimStateItem: NSMenuItem
     
     weak var delegate: MenuControllerDelegate? = nil
 
@@ -27,8 +28,21 @@ class MenuController: NSObject, NSMenuDelegate {
         
         menu.addItem(NSMenuItem.separator())
         
-        let doNotDisturbShortcutItem = NSMenuItem(title: "Set Do Not Disturb shortcut", action: #selector(setKeyboardShortcutAction(sender:)), keyEquivalent: "")
-        menu.addItem(doNotDisturbShortcutItem)
+        let preferencesItem = NSMenuItem(title: "Preferences", action: nil, keyEquivalent: "")
+        
+        let preferencesMenu = NSMenu()
+        
+        dimStateItem = NSMenuItem(title: "Dim light", action: #selector(changeDimStateAction(sender:)), keyEquivalent: "")
+        preferencesMenu.addItem(dimStateItem)
+        
+        preferencesMenu.addItem(NSMenuItem.separator())
+        
+        let setKeyboardShortcutItem = NSMenuItem(title: "Set keyboard shortcut", action: #selector(setKeyboardShortcutAction(sender:)), keyEquivalent: "")
+        preferencesMenu.addItem(setKeyboardShortcutItem)
+        
+        preferencesItem.submenu = preferencesMenu
+        
+        menu.addItem(preferencesItem)
         
         menu.addItem(NSMenuItem.separator())
         
@@ -37,12 +51,25 @@ class MenuController: NSObject, NSMenuDelegate {
         
         super.init()
         
-        for item in menu.items where item.action != nil {
-            item.target = self
-        }
+        MenuController.assignTarget(toMenu: menu, target: self)
         menu.delegate = self
         
         statusItem.menu = menu
+    }
+    
+    /// Assigns target to items and sub-items with actions.
+    ///
+    /// - Parameters:
+    ///   - theMenu: Menu to traverse.
+    ///   - target: Target to assign to items with action.
+    private static func assignTarget(toMenu theMenu: NSMenu, target: AnyObject?) {
+        for item in theMenu.items {
+            if item.hasSubmenu {
+                assignTarget(toMenu: item.submenu!, target: target)
+            } else if item.action != nil {
+                item.target = target
+            }
+        }
     }
     
     // MARK: - Actions
@@ -52,12 +79,18 @@ class MenuController: NSObject, NSMenuDelegate {
         connectionItem.title = "Status: \(state.rawValue)"
     }
     
-    
     /// Updates status item image state.
     func update(imageState state: MenuImageState) {
         let image = NSImage(named: state.rawValue)
         image?.isTemplate = true
         statusItem.button?.image = image
+    }
+    
+    /// Updates on/off state of the dim item.
+    ///
+    /// - Parameter isDimmed: True if dimmed, false otherwise.
+    func update(dimState isDimmed: Bool) {
+        dimStateItem.state = isDimmed ? NSOnState : NSOffState
     }
     
     // MARK: - NSMenuDelegate
@@ -68,14 +101,22 @@ class MenuController: NSObject, NSMenuDelegate {
     
     // MARK: - Selectors
     
-    /// Opens system preferences pane to keyboard shortcuts.
-    func setKeyboardShortcutAction(sender: AnyObject) {
-        delegate?.menu(action: .setKeyboardShortcut)
+    /// Responds to 'Dim light' action.
+    func changeDimStateAction(sender: AnyObject) {
+        let newEnabled = !(dimStateItem.state == NSOnState)
+        if delegate?.menu(action: .dimState(enabled: newEnabled)) ?? false {
+            update(dimState: newEnabled)
+        }
     }
     
-    /// Terminates application.
+    /// Responds to 'Set keyboard shortcut' action.
+    func setKeyboardShortcutAction(sender: AnyObject) {
+        _ = delegate?.menu(action: .setKeyboardShortcut)
+    }
+    
+    /// Responds to 'Quit Luxaforus' action.
     func quitAction(sender: AnyObject) {
-        delegate?.menu(action: .quit)
+        _ = delegate?.menu(action: .quit)
     }
     
 }
@@ -89,7 +130,8 @@ protocol MenuControllerDelegate: class {
     /// Menu action received.
     ///
     /// - Parameter theAction: Menu action type.
-    func menu(action theAction: MenuAction)
+    /// - Returns: True if action succeeded, false otherwise.
+    func menu(action theAction: MenuAction) -> Bool
     
 }
 
@@ -116,7 +158,14 @@ enum MenuImageState: String {
     case unknown = "StatusBarButtonImage-Unknown"
 }
 
+
+/// Menu actions with parameters.
+///
+/// - setKeyboardShortcut: Action to set keyboard shortcut for Do Not Disturb.
+/// - dimState: Enable/disable light dimming.
+/// - quit: Action to quit the application.
 enum MenuAction {
     case setKeyboardShortcut
+    case dimState(enabled: Bool)
     case quit
 }

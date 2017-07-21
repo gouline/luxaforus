@@ -11,8 +11,10 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuControllerDelegate {
     
-    let stateObserver = StateObserver()
-    let menuController = MenuController()
+    private let stateObserver = StateObserver()
+    private let menuController = MenuController()
+    private let lightController = LightController()
+    private let preferenceManager = PreferenceManager()
     
     override init() {
         super.init()
@@ -29,7 +31,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
             NSApplication.shared().terminate(self)
         }
         
-        LXDevice.sharedInstance()?.transitionSpeed = 30
+        lightController.update(transitionSpeed: 30)
+        update(lightDimmed: preferenceManager.fetchDimmed(), updatePreference: false, updateMenu: true)
         
         menuController.update(imageState: MenuImageState.unknown)
         
@@ -38,6 +41,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
 
     func applicationWillTerminate(_ aNotification: Notification) {
         stateObserver.detach()
+    }
+    
+    // MARK: - Actions
+    
+    private func update(lightDimmed isDimmed: Bool, updatePreference: Bool, updateMenu: Bool) {
+        if updatePreference {
+            preferenceManager.set(dimmed: isDimmed)
+        }
+        if updateMenu {
+            menuController.update(dimState: isDimmed)
+        }
+        lightController.update(dimmed: isDimmed)
     }
     
     // MARK: - StateObserverDelegate
@@ -54,36 +69,29 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
             }
         }()
         
-        if let device = LXDevice.sharedInstance(), device.connected == true {
-            device.color = color.cgColor
-        }
-        
+        lightController.update(color: color)
+
         menuController.update(imageState: imageState)
     }
     
     // MARK: - MenuControllerDelegate
+    
+    func menu(action theAction: MenuAction) -> Bool {
+        switch theAction {
+        case .dimState(let enabled):
+            update(lightDimmed: enabled, updatePreference: true, updateMenu: false)
+        case .setKeyboardShortcut:
+            ActionHelper.preferencesKeyboardShortcuts()
+        case .quit:
+            NSApplication.shared().terminate(self)
+        }
+        return true
+    }
     
     func menuWillOpen() {
         stateObserver.reload()
         
         menuController.update(connectionState: LXDevice.sharedInstance()?.connected == true ? .connected : .disconnected)
     }
-    
-    func menu(action theAction: MenuAction) {
-        switch theAction {
-        case .setKeyboardShortcut:
-            ActionHelper.preferencesKeyboardShortcuts()
-        case .quit:
-            NSApplication.shared().terminate(self)
-        }
-    }
 
-}
-
-
-/// Color states for the light.
-class LightColor {
-    static let available = NSColor.green
-    static let busy = NSColor.red
-    static let locked = NSColor.black
 }

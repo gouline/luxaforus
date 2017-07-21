@@ -13,7 +13,7 @@
 
 + (LXDevice *)sharedInstance;
 
-@property (nonatomic) CGColorRef color;
+@property (nonatomic) NSColor *color;
 @property (nonatomic) char transitionSpeed;
 @property (nonatomic) BOOL connected;
 

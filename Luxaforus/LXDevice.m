@@ -26,34 +26,38 @@
     return sharedLuxaforDevice;
 }
 
-- (void)setColor:(CGColorRef)color
+- (void)setColor:(NSColor *)color
 {
-    size_t componentCount = CGColorGetNumberOfComponents(color);
-    const CGFloat *components = CGColorGetComponents(color);
+    CGFloat alpha = color.alphaComponent;
+    int max = 255;
     
     char red, green, blue;
-    
-    if (componentCount == 4) { // RGB
-        CGFloat alpha = components[3];
-        red = (char)(components[0] * alpha * 255);
-        green = (char)(components[1] * alpha * 255);
-        blue = (char)(components[2] * alpha * 255);
-    } else if (componentCount == 2) { // Gray
-        CGFloat alpha = components[1];
-        red = green = blue = (char)(components[0] * alpha * 255);
+    if (color.colorSpaceName == NSCalibratedWhiteColorSpace) {
+        red = green = blue = (char)(color.whiteComponent * alpha * max);
+    } else if (color.colorSpaceName == NSCalibratedRGBColorSpace) {
+        red = (char)(color.redComponent * alpha * max);
+        green = (char)(color.greenComponent * alpha * max);
+        blue = (char)(color.blueComponent * alpha * max);
     } else {
         return;
     }
     
     unsigned char luxaforOperation[kLuxaforOperationSize];
     
-    luxaforOperation[0] = 0x0;   //report id
-    luxaforOperation[1] = 2;     //continious transition
-    luxaforOperation[2] = 0xFF;  //all leds
-    luxaforOperation[3] = red;   //red color component
-    luxaforOperation[4] = green; //green color component
-    luxaforOperation[5] = blue;  //blue color component
-    luxaforOperation[6] = _transitionSpeed;  //transition speed
+    //report id
+    luxaforOperation[0] = 0x0;
+    //continious transition
+    luxaforOperation[1] = 2;
+    //all leds
+    luxaforOperation[2] = 0xFF;
+    //red color component
+    luxaforOperation[3] = red;
+    //green color component
+    luxaforOperation[4] = green;
+    //blue color component
+    luxaforOperation[5] = blue;
+    //transition speed
+    luxaforOperation[6] = _transitionSpeed;
     
     [self performLuxoforOperation:luxaforOperation];
 }
