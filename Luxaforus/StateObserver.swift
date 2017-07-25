@@ -28,8 +28,6 @@ class StateObserver: NSObject {
         notificationCenterDefaults = UserDefaults(suiteName: "com.apple.notificationcenterui")
     }
     
-    // MARK: - Lifecycle
-    
     /// Attaches state observers when application starts up.
     func attach(delegate theDelegate: StateObserverDelegate) {
         delegate = theDelegate
@@ -101,11 +99,15 @@ class StateObserver: NSObject {
     // MARK: - Updaters
     
     private func update(isDoNotDisturb newValue: Bool) {
+        NSLog("State: doNotDisturb=%@", newValue ? "true" : "false")
+        
         isDoNotDisturb = newValue
         notifyDelegate()
     }
     
     private func update(isScreenLocked newValue: Bool) {
+        NSLog("State: screenLocked=%@", newValue ? "true" : "false")
+        
         isScreenLocked = newValue
         notifyDelegate()
     }
@@ -131,18 +133,16 @@ protocol StateObserverDelegate: class {
     
 }
 
+/// State representation value.
+///
+/// - doNotDisturbOn: Do Not Disturb enabled (screen unlocked).
+/// - doNotDisturbOff: Do Not Diturb disabled (screen unlocked).
+/// - screenLocked: Screen locked (or sleep mode).
+/// - urlHandled: URL scheme handled.
+/// - detached: Observer got detached.
 enum StateObserverValue {
-    
-    /// Do Not Disturb enabled (screen unlocked).
     case doNotDisturbOn
-    
-    /// Do Not Diturb disabled (screen unlocked).
     case doNotDisturbOff
-    
-    /// Screen locked (or sleep mode).
     case screenLocked
-    
-    /// Observer got detached.
     case detached
-    
 }

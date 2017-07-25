@@ -15,6 +15,7 @@ class MenuController: NSObject, NSMenuDelegate {
     private let menu = NSMenu()
     
     private let connectionItem: NSMenuItem
+    private let slackIntegrationItem: NSMenuItem
     private let dimStateItem: NSMenuItem
     
     weak var delegate: MenuControllerDelegate? = nil
@@ -37,6 +38,11 @@ class MenuController: NSObject, NSMenuDelegate {
         
         preferencesMenu.addItem(NSMenuItem.separator())
         
+        slackIntegrationItem = NSMenuItem(title: "Add Slack Integration", action: #selector(slackIntegrationAction(sender:)), keyEquivalent: "")
+        preferencesMenu.addItem(slackIntegrationItem)
+        
+        preferencesMenu.addItem(NSMenuItem.separator())
+        
         let setKeyboardShortcutItem = NSMenuItem(title: "Set Keyboard Shortcut…", action: #selector(setKeyboardShortcutAction(sender:)), keyEquivalent: "")
         preferencesMenu.addItem(setKeyboardShortcutItem)
         
@@ -55,6 +61,10 @@ class MenuController: NSObject, NSMenuDelegate {
         menu.delegate = self
         
         statusItem.menu = menu
+        
+        // Defaults
+        update(connectionState: .unknown)
+        update(slackLoggedIn: false)
     }
     
     /// Assigns target to items and sub-items with actions.
@@ -74,16 +84,27 @@ class MenuController: NSObject, NSMenuDelegate {
     
     // MARK: - Actions
     
-    /// Updates connection state text.
-    func update(connectionState state: MenuConnectionState) {
-        connectionItem.title = "Status: \(state.rawValue)"
-    }
-    
     /// Updates status item image state.
+    ///
+    /// - Parameter state: Menu image state enum.
     func update(imageState state: MenuImageState) {
         let image = NSImage(named: state.rawValue)
         image?.isTemplate = true
         statusItem.button?.image = image
+    }
+    
+    /// Updates connection state text.
+    ///
+    /// - Parameter state: Connection state enum.
+    func update(connectionState state: MenuConnectionState) {
+        connectionItem.title = "Status: \(state.rawValue)"
+    }
+    
+    /// Updates Slack integration text.
+    ///
+    /// - Parameter loggedIn: True if Slack logged in, false otherwise.
+    func update(slackLoggedIn loggedIn: Bool) {
+        slackIntegrationItem.title = loggedIn ? "Remove Slack Integration" : "Add Slack Integration"
     }
     
     /// Updates on/off state of the dim item.
@@ -96,7 +117,7 @@ class MenuController: NSObject, NSMenuDelegate {
     // MARK: - NSMenuDelegate
     
     func menuWillOpen(_ menu: NSMenu) {
-        delegate?.menuWillOpen()
+        _ = delegate?.menu(action: .opening)
     }
     
     // MARK: - Selectors
@@ -107,6 +128,11 @@ class MenuController: NSObject, NSMenuDelegate {
         if delegate?.menu(action: .dimState(enabled: newEnabled)) ?? false {
             update(dimState: newEnabled)
         }
+    }
+    
+    /// Add/remove Slack integration action.
+    func slackIntegrationAction(sender: AnyObject) {
+        _ = delegate?.menu(action: .slackIntegration)
     }
     
     /// Responds to 'Set keyboard shortcut' action.
@@ -122,10 +148,6 @@ class MenuController: NSObject, NSMenuDelegate {
 }
 
 protocol MenuControllerDelegate: class {
- 
-    /// Menu is about to open from status button click.
-    func menuWillOpen()
-    
     
     /// Menu action received.
     ///
@@ -161,11 +183,15 @@ enum MenuImageState: String {
 
 /// Menu actions with parameters.
 ///
-/// - setKeyboardShortcut: Action to set keyboard shortcut for Do Not Disturb.
+/// - opening: Menu about to open.
 /// - dimState: Enable/disable light dimming.
+/// - slackIntegration: Add/remove Slack integration.
+/// - setKeyboardShortcut: Action to set keyboard shortcut for Do Not Disturb.
 /// - quit: Action to quit the application.
 enum MenuAction {
-    case setKeyboardShortcut
+    case opening
     case dimState(enabled: Bool)
+    case slackIntegration
+    case setKeyboardShortcut
     case quit
 }

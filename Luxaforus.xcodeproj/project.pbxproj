@@ -16,9 +16,10 @@
 		3D46ACE71F066A30000F2AD2 /* LuxaforusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D46ACE61F066A30000F2AD2 /* LuxaforusUITests.swift */; };
 		3D5178FE1F0A37F9002AB64C /* hid.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5178FA1F0A37F9002AB64C /* hid.c */; };
 		3D5178FF1F0A37F9002AB64C /* LXDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5178FD1F0A37F9002AB64C /* LXDevice.m */; };
+		3D83AE8D1F25F7BE00B0FE86 /* SlackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D83AE8C1F25F7BE00B0FE86 /* SlackController.swift */; };
 		3D8F64D61F20E41400D091D3 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8F64D51F20E41400D091D3 /* MenuController.swift */; };
 		3DB73B091F21D7B800551EA1 /* LightController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB73B081F21D7B800551EA1 /* LightController.swift */; };
-		3DB73B0B1F21DF7B00551EA1 /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB73B0A1F21DF7B00551EA1 /* PreferenceManager.swift */; };
+		3DB73B0B1F21DF7B00551EA1 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB73B0A1F21DF7B00551EA1 /* PersistenceManager.swift */; };
 		F0BA16277E4F86ACCC9ED59A /* Pods_Luxaforus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BAC15124C720B73E146525F /* Pods_Luxaforus.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,9 +59,10 @@
 		3D5178FB1F0A37F9002AB64C /* hidapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hidapi.h; sourceTree = "<group>"; };
 		3D5178FC1F0A37F9002AB64C /* LXDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXDevice.h; sourceTree = "<group>"; };
 		3D5178FD1F0A37F9002AB64C /* LXDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXDevice.m; sourceTree = "<group>"; };
+		3D83AE8C1F25F7BE00B0FE86 /* SlackController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlackController.swift; sourceTree = "<group>"; };
 		3D8F64D51F20E41400D091D3 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		3DB73B081F21D7B800551EA1 /* LightController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightController.swift; sourceTree = "<group>"; };
-		3DB73B0A1F21DF7B00551EA1 /* PreferenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceManager.swift; sourceTree = "<group>"; };
+		3DB73B0A1F21DF7B00551EA1 /* PersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		6260CA446F9EEF23B89D26D7 /* Pods-Luxaforus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Luxaforus.release.xcconfig"; path = "Pods/Target Support Files/Pods-Luxaforus/Pods-Luxaforus.release.xcconfig"; sourceTree = "<group>"; };
 		9BAC15124C720B73E146525F /* Pods_Luxaforus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Luxaforus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A48099DBE08ADE28C00DA5C6 /* Pods-Luxaforus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Luxaforus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Luxaforus/Pods-Luxaforus.debug.xcconfig"; sourceTree = "<group>"; };
@@ -105,8 +107,9 @@
 			children = (
 				3DB73B081F21D7B800551EA1 /* LightController.swift */,
 				3D8F64D51F20E41400D091D3 /* MenuController.swift */,
+				3DB73B0A1F21DF7B00551EA1 /* PersistenceManager.swift */,
+				3D83AE8C1F25F7BE00B0FE86 /* SlackController.swift */,
 				3D3488A81F20AA3800CCCB4D /* StateObserver.swift */,
-				3DB73B0A1F21DF7B00551EA1 /* PreferenceManager.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D46ACEB1F066A30000F2AD2 /* Build configuration list for PBXNativeTarget "Luxaforus" */;
 			buildPhases = (
+				3D83AE8E1F27842200B0FE86 /* Import Credentials */,
 				D1B22C8B7CBF082948673004 /* [CP] Check Pods Manifest.lock */,
 				3D46ACC21F066A30000F2AD2 /* Sources */,
 				3D46ACC31F066A30000F2AD2 /* Frameworks */,
@@ -327,6 +331,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3D83AE8E1F27842200B0FE86 /* Import Credentials */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Import Credentials";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "SLACK_CLIENT_ID=\"INVALID\"\nSLACK_CLIENT_SECRET=\"INVALID\"\n\nfile=\"./credentials.properties\"\nif [ -f \"$file\" ]; then\n    while IFS='=' read -r key value; do\n        key=$(echo $key | tr '.' '_')\n        eval \"${key}='${value}'\"\n    done < \"$file\"\nfi\n\nexport SLACK_CLIENT_ID\nexport SLACK_CLIENT_SECRET\n";
+		};
 		96370DE786493C98C43028CD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -383,9 +401,10 @@
 				3D8F64D61F20E41400D091D3 /* MenuController.swift in Sources */,
 				3D5178FF1F0A37F9002AB64C /* LXDevice.m in Sources */,
 				3D5178FE1F0A37F9002AB64C /* hid.c in Sources */,
-				3DB73B0B1F21DF7B00551EA1 /* PreferenceManager.swift in Sources */,
+				3DB73B0B1F21DF7B00551EA1 /* PersistenceManager.swift in Sources */,
 				3DB73B091F21D7B800551EA1 /* LightController.swift in Sources */,
 				3D3488AB1F20C05A00CCCB4D /* ActionHelper.swift in Sources */,
+				3D83AE8D1F25F7BE00B0FE86 /* SlackController.swift in Sources */,
 				3D3488A91F20AA3800CCCB4D /* StateObserver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

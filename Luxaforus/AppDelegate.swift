@@ -9,14 +9,20 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuControllerDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuControllerDelegate, SlackControllerDelegate {
     
     private let stateObserver = StateObserver()
-    private let menuController = MenuController()
-    private let lightController = LightController()
-    private let preferenceManager = PreferenceManager()
+    private let persistenceManager = PersistenceManager()
+    
+    private let menuController: MenuController
+    private let lightController: LightController
+    private let slackController: SlackController
     
     override init() {
+        menuController = MenuController()
+        lightController = LightController()
+        slackController = SlackController(persistenceManager: persistenceManager)
+        
         super.init()
         
         menuController.delegate = self
@@ -36,22 +42,24 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
         }
         
         lightController.update(transitionSpeed: 30)
-        update(lightDimmed: preferenceManager.fetchDimmed(), updatePreference: false, updateMenu: true)
+        update(lightDimmed: persistenceManager.fetchDimmed(), updatePersistence: false, updateMenu: true)
         
         menuController.update(imageState: MenuImageState.unknown)
         
+        slackController.attach(delegate: self)
         stateObserver.attach(delegate: self)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         stateObserver.detach()
+        slackController.detach()
     }
     
     // MARK: - Actions
     
-    private func update(lightDimmed isDimmed: Bool, updatePreference: Bool, updateMenu: Bool) {
-        if updatePreference {
-            preferenceManager.set(dimmed: isDimmed)
+    private func update(lightDimmed isDimmed: Bool, updatePersistence: Bool, updateMenu: Bool) {
+        if updatePersistence {
+            persistenceManager.set(dimmed: isDimmed)
         }
         if updateMenu {
             menuController.update(dimState: isDimmed)
@@ -59,31 +67,49 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
         lightController.update(dimmed: isDimmed)
     }
     
-    // MARK: - StateObserverDelegate
+    private func update(slackLoggedIn isLoggedIn: Bool, updateMenu: Bool) {
+        if updateMenu {
+            menuController.update(slackLoggedIn: isLoggedIn)
+        }
+    }
     
+    // MARK: - Delegates
+    
+    // StateObserverDelegate
     func stateObserver(valueChanged value: StateObserverValue) {
-        let (color, imageState) = { () -> (NSColor, MenuImageState) in
+        let (color, imageState, snoozed) = { () -> (NSColor, MenuImageState, Bool?) in
             switch value {
             case .doNotDisturbOff:
-                return (LightColor.available, .available)
+                return (LightColor.available, .available, false)
             case .doNotDisturbOn:
-                return (LightColor.busy, .busy)
+                return (LightColor.busy, .busy, true)
             case .screenLocked, .detached:
-                return (LightColor.locked, .unknown)
+                return (LightColor.locked, .unknown, nil)
             }
         }()
         
         lightController.update(color: color)
 
         menuController.update(imageState: imageState)
+        
+        if snoozed != nil {
+            slackController.update(snoozed: snoozed!)
+        }
     }
     
-    // MARK: - MenuControllerDelegate
-    
+    // MenuControllerDelegate
     func menu(action theAction: MenuAction) -> Bool {
         switch theAction {
+        case .opening:
+            menuController.update(connectionState: LXDevice.sharedInstance()?.connected == true ? .connected : .disconnected)
         case .dimState(let enabled):
-            update(lightDimmed: enabled, updatePreference: true, updateMenu: false)
+            update(lightDimmed: enabled, updatePersistence: true, updateMenu: false)
+        case .slackIntegration:
+            if slackController.isLoggedIn {
+                slackController.removeIntegration()
+            } else {
+                slackController.addIntegration()
+            }
         case .setKeyboardShortcut:
             let alert = NSAlert()
             alert.messageText = "Open keyboard shortcuts?"
@@ -100,10 +126,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
         return true
     }
     
-    func menuWillOpen() {
-        stateObserver.reload()
-        
-        menuController.update(connectionState: LXDevice.sharedInstance()?.connected == true ? .connected : .disconnected)
+    // SlackControllerDelegate
+    func slackController(stateChanged loggedIn: Bool) {
+        menuController.update(slackLoggedIn: loggedIn)
     }
 
 }
