@@ -67,5 +67,5 @@ fastlane/screenshots
 fastlane/test_output
 
 # Credentials
-Luxaforus/Credentials.plist
+Luxaforus/Credentials.m
 

@@ -1,0 +1,10 @@
+//
+//  Credentials.h
+//  Luxaforus
+//
+//  Created by Mike Gouline on 26/7/17.
+//  Copyright © 2017 Traversal Space. All rights reserved.
+//
+
+extern NSString* const kSlackClientId;
+extern NSString* const kSlackClientSecret;

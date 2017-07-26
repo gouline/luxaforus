@@ -124,10 +124,9 @@ class SlackController {
     
     /// Open authorize link in the browser.
     private func openAuthorizeLink() {
-        let (clientId, _) = retrieveCredentials()
         var url = URLComponents(string: "\(kBaseUrl)/oauth/authorize")
         url?.queryItems = [
-            URLQueryItem(name: "client_id", value: clientId!),
+            URLQueryItem(name: "client_id", value: kSlackClientId),
             URLQueryItem(name: "scope", value: "dnd:write"),
             URLQueryItem(name: "redirect_uri", value: kRedirectUrl)
         ]
@@ -138,10 +137,9 @@ class SlackController {
     ///
     /// - Parameter code: Activation code passed from URL.
     private func requestOAuthAccess(withCode code: String) {
-        let (clientId, clientSecret) = retrieveCredentials()
         let params = [
-            "client_id": clientId!,
-            "client_secret": clientSecret!,
+            "client_id": kSlackClientId,
+            "client_secret": kSlackClientSecret,
             "code": code,
             "redirect_uri": kRedirectUrl
         ]
@@ -229,20 +227,6 @@ class SlackController {
             print("Slack: request error=%@", error.localizedDescription)
             return (false, nil)
         }
-    }
-    
-    /// Retrieves client credentials.
-    ///
-    /// - Returns: Client ID, secret.
-    private func retrieveCredentials() -> (String?, String?) {
-        if let credentials = Bundle.main.path(forResource: "Credentials", ofType: "plist") {
-            if let dict = NSDictionary.init(contentsOfFile: credentials) {
-                if let slack = dict["Slack"] as? [String: String] {
-                    return (slack["ClientID"]!, slack["ClientSecret"]!)
-                }
-            }
-        }
-        return (nil, nil)
     }
     
     // MARK: - State

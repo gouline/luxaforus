@@ -38,7 +38,7 @@ class MenuController: NSObject, NSMenuDelegate {
         
         preferencesMenu.addItem(NSMenuItem.separator())
         
-        slackIntegrationItem = NSMenuItem(title: "Add Slack Integration", action: #selector(slackIntegrationAction(sender:)), keyEquivalent: "")
+        slackIntegrationItem = NSMenuItem(title: "", action: #selector(slackIntegrationAction(sender:)), keyEquivalent: "")
         preferencesMenu.addItem(slackIntegrationItem)
         
         preferencesMenu.addItem(NSMenuItem.separator())

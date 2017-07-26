@@ -15,7 +15,7 @@ Luxaforus is also integrated with the Slack API to synchronise your 'Do Not Dist
 While this application is open source, some credentials linked to specific accounts (e.g. Slack) are omitted from this repository and must be provided as follows:
 
 1. Go to 'Luxaforus' project directory
-2. Copy 'Credentials.plist.example' and rename it to 'Credentials.plist'
+2. Copy 'Credentials.m.example' and rename it to 'Credentials.m'
 3. Replace the dummy values inside with ones you intend to use
 4. Add the file to the Xcode project, by dragging it into the Project navigator
 

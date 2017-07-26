@@ -3,3 +3,4 @@
 //
 
 #import "LXDevice.h"
+#import "Credentials.h"
