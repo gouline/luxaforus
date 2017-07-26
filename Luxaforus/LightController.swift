@@ -18,6 +18,8 @@ class LightController {
     ///
     /// - Parameter theColor: Color value (ignores alpha - set brightness for that).
     func update(color theColor: NSColor) {
+        NSLog("Light: color=%@", theColor)
+        
         currentColor = theColor
         
         getDevice(onlyConnected: true)?.color = theColor.withAlphaComponent(brightness)
@@ -27,6 +29,8 @@ class LightController {
     ///
     /// - Parameter theSpeed: Transition speed as a 8-bit integer.
     func update(transitionSpeed theSpeed: Int8) {
+        NSLog("Light: transitionSpeed=%d", theSpeed)
+        
         getDevice(onlyConnected: true)?.transitionSpeed = theSpeed
     }
     
