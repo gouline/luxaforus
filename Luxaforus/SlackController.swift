@@ -34,10 +34,6 @@ class SlackController {
     
     init(persistenceManager: PersistenceManager) {
         self.persistenceManager = persistenceManager
-        
-        let (clientId, clientSecret) = retrieveClient()
-        print(clientId ?? "nil")
-        print(clientSecret ?? "nil")
     }
     
     /// Attaches state observers when application starts up.
@@ -91,7 +87,7 @@ class SlackController {
     ///
     /// - Parameter isSnoozed: True if snoozed, false otherwise.
     func update(snoozed isSnoozed: Bool) {
-        if self.isSnoozed != isSnoozed {
+        if isLoggedIn && self.isSnoozed != isSnoozed {
             self.isSnoozed = isSnoozed
             if isSnoozed {
                 requestSetSnooze()
@@ -113,7 +109,11 @@ class SlackController {
         if theUrl.host?.caseInsensitiveCompare("slack") == .orderedSame &&
             theUrl.path.caseInsensitiveCompare("/activate") == .orderedSame {
             if let code = theUrl.queryItems?.first(where: { $0.name == "code" })?.value {
-                requestOAuthAccess(withCode: code)
+                if !isLoggedIn {
+                    requestOAuthAccess(withCode: code)
+                } else {
+                    authFailure(withMessage: "Slack integration already added, currently only one account is supported.")
+                }
             } else {
                 authFailure(withMessage: "Activation code not found.")
             }
@@ -124,7 +124,7 @@ class SlackController {
     
     /// Open authorize link in the browser.
     private func openAuthorizeLink() {
-        let (clientId, _) = retrieveClient()
+        let (clientId, _) = retrieveCredentials()
         var url = URLComponents(string: "\(kBaseUrl)/oauth/authorize")
         url?.queryItems = [
             URLQueryItem(name: "client_id", value: clientId!),
@@ -138,7 +138,7 @@ class SlackController {
     ///
     /// - Parameter code: Activation code passed from URL.
     private func requestOAuthAccess(withCode code: String) {
-        let (clientId, clientSecret) = retrieveClient()
+        let (clientId, clientSecret) = retrieveCredentials()
         let params = [
             "client_id": clientId!,
             "client_secret": clientSecret!,
@@ -231,12 +231,16 @@ class SlackController {
         }
     }
     
-    /// Retrieves client information.
+    /// Retrieves client credentials.
     ///
     /// - Returns: Client ID, secret.
-    private func retrieveClient() -> (String?, String?) {
-        if let dict = Bundle.main.infoDictionary?["Slack"] as? [String: Any] {
-            return (dict["ClientId"] as? String, dict["ClientSecret"] as? String)
+    private func retrieveCredentials() -> (String?, String?) {
+        if let credentials = Bundle.main.path(forResource: "Credentials", ofType: "plist") {
+            if let dict = NSDictionary.init(contentsOfFile: credentials) {
+                if let slack = dict["Slack"] as? [String: String] {
+                    return (slack["ClientID"]!, slack["ClientSecret"]!)
+                }
+            }
         }
         return (nil, nil)
     }
