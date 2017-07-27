@@ -9,7 +9,7 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuControllerDelegate, SlackControllerDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuControllerDelegate, LightControllerDelegate, SlackControllerDelegate {
     
     private let stateObserver = StateObserver()
     private let persistenceManager = PersistenceManager()
@@ -24,6 +24,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
         slackController = SlackController(persistenceManager: persistenceManager)
         
         super.init()
+        
+        lightController(connectedChanged: LXDevice.sharedInstance()?.connected == true)
         
         menuController.delegate = self
     }
@@ -41,10 +43,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
             }
         }
         
+        menuController.update(imageState: MenuImageState.unknown)
+        
+        lightController.attach(delegate: self)
         lightController.update(transitionSpeed: 30)
         update(lightDimmed: persistenceManager.fetchDimmed(), updatePersistence: false, updateMenu: true)
-        
-        menuController.update(imageState: MenuImageState.unknown)
         
         slackController.attach(delegate: self)
         stateObserver.attach(delegate: self)
@@ -53,6 +56,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
     func applicationWillTerminate(_ aNotification: Notification) {
         stateObserver.detach()
         slackController.detach()
+        lightController.detach()
     }
     
     // MARK: - Actions
@@ -101,7 +105,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
     func menu(action theAction: MenuAction) -> Bool {
         switch theAction {
         case .opening:
-            menuController.update(connectionState: LXDevice.sharedInstance()?.connected == true ? .connected : .disconnected)
+            break
         case .dimState(let enabled):
             update(lightDimmed: enabled, updatePersistence: true, updateMenu: false)
         case .slackIntegration:
@@ -124,6 +128,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
             NSApplication.shared().terminate(self)
         }
         return true
+    }
+    
+    // LightControllerDelegate
+    func lightController(connectedChanged connected: Bool) {
+        menuController.update(connectionState: connected ? .connected : .disconnected)
     }
     
     // SlackControllerDelegate

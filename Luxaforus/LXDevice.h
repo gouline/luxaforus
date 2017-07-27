@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <AppKit/AppKit.h>
 
+extern ushort const kLuxaforVendorId;
+extern ushort const kLuxaforProductId;
+
 @interface LXDevice : NSObject
 
 + (LXDevice *)sharedInstance;
