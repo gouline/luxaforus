@@ -13,15 +13,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
     
     private let stateObserver = StateObserver()
     private let persistenceManager = PersistenceManager()
+    private var notificationManager = NotificationManager()
     
     private let menuController: MenuController
     private let lightController: LightController
     private let slackController: SlackController
+    private let updateController: UpdateController
     
     override init() {
         menuController = MenuController()
         lightController = LightController()
         slackController = SlackController(persistenceManager: persistenceManager)
+        updateController = UpdateController(notificationManager: notificationManager, persistenceManager: persistenceManager)
         
         super.init()
         
@@ -48,15 +51,23 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
         lightController.attach(delegate: self)
         lightController.update(transitionSpeed: 30)
         update(lightDimmed: persistenceManager.fetchDimmed(), updatePersistence: false, updateMenu: true)
+        update(ignoreUpdates: persistenceManager.fetchIgnoreUpdates(), updatePersistence: false, updateMenu: true)
         
+        notificationManager.attach()
         slackController.attach(delegate: self)
         stateObserver.attach(delegate: self)
+        
+        // Delay update check to avoid overwhelming user with information
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
+            self.updateController.check(automatic: true)
+        })
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         stateObserver.detach()
         slackController.detach()
         lightController.detach()
+        notificationManager.detach()
     }
     
     // MARK: - Actions
@@ -69,6 +80,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
             menuController.update(dimState: isDimmed)
         }
         lightController.update(dimmed: isDimmed)
+    }
+    
+    private func update(ignoreUpdates isIgnored: Bool, updatePersistence: Bool, updateMenu: Bool) {
+        if updatePersistence {
+            persistenceManager.set(ignoreUpdates: isIgnored)
+        }
+        if updateMenu {
+            menuController.update(ignoreUpdates: isIgnored)
+        }
     }
     
     private func update(slackLoggedIn isLoggedIn: Bool, updateMenu: Bool) {
@@ -108,6 +128,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
             break
         case .dimState(let enabled):
             update(lightDimmed: enabled, updatePersistence: true, updateMenu: false)
+        case .ignoreUpdatesState(let enabled):
+            update(ignoreUpdates: enabled, updatePersistence: true, updateMenu: false)
         case .slackIntegration:
             if slackController.isLoggedIn {
                 slackController.removeIntegration()
@@ -124,6 +146,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
             if alert.runModal() == NSAlertFirstButtonReturn {
                 ActionHelper.preferencesKeyboardShortcuts()
             }
+        case .checkForUpdates:
+            updateController.check(automatic: false)
         case .quit:
             NSApplication.shared().terminate(self)
         }

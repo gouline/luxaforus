@@ -15,8 +15,9 @@ class MenuController: NSObject, NSMenuDelegate {
     private let menu = NSMenu()
     
     private let connectionItem: NSMenuItem
-    private let slackIntegrationItem: NSMenuItem
     private let dimStateItem: NSMenuItem
+    private let ignoreUpdatesItem: NSMenuItem
+    private let slackIntegrationItem: NSMenuItem
     
     weak var delegate: MenuControllerDelegate? = nil
 
@@ -36,6 +37,9 @@ class MenuController: NSObject, NSMenuDelegate {
         dimStateItem = NSMenuItem(title: "Dim Light", action: #selector(changeDimStateAction(sender:)), keyEquivalent: "")
         preferencesMenu.addItem(dimStateItem)
         
+        ignoreUpdatesItem = NSMenuItem(title: "Ignore Updates", action: #selector(changeIgnoreUpdatesAction(sender:)), keyEquivalent: "")
+        preferencesMenu.addItem(ignoreUpdatesItem)
+        
         preferencesMenu.addItem(NSMenuItem.separator())
         
         slackIntegrationItem = NSMenuItem(title: "", action: #selector(slackIntegrationAction(sender:)), keyEquivalent: "")
@@ -49,6 +53,8 @@ class MenuController: NSObject, NSMenuDelegate {
         preferencesItem.submenu = preferencesMenu
         
         menu.addItem(preferencesItem)
+        
+        menu.addItem(NSMenuItem(title: "Check for Updates", action: #selector(checkForUpdatesAction(sender:)), keyEquivalent: ""))
         
         menu.addItem(NSMenuItem.separator())
         
@@ -114,6 +120,13 @@ class MenuController: NSObject, NSMenuDelegate {
         dimStateItem.state = isDimmed ? NSOnState : NSOffState
     }
     
+    /// Updates ignore updates on/off state.
+    ///
+    /// - Parameter isIgnored: True if ignore, false otherwise.
+    func update(ignoreUpdates isIgnored: Bool) {
+        ignoreUpdatesItem.state = isIgnored ? NSOnState : NSOffState
+    }
+    
     // MARK: - NSMenuDelegate
     
     func menuWillOpen(_ menu: NSMenu) {
@@ -130,6 +143,14 @@ class MenuController: NSObject, NSMenuDelegate {
         }
     }
     
+    /// Responds to 'Ignore Updates' action.
+    func changeIgnoreUpdatesAction(sender: AnyObject) {
+        let newEnabled = !(ignoreUpdatesItem.state == NSOnState)
+        if delegate?.menu(action: .ignoreUpdatesState(enabled: newEnabled)) ?? false {
+            update(ignoreUpdates: newEnabled)
+        }
+    }
+    
     /// Add/remove Slack integration action.
     func slackIntegrationAction(sender: AnyObject) {
         _ = delegate?.menu(action: .slackIntegration)
@@ -138,6 +159,11 @@ class MenuController: NSObject, NSMenuDelegate {
     /// Responds to 'Set keyboard shortcut' action.
     func setKeyboardShortcutAction(sender: AnyObject) {
         _ = delegate?.menu(action: .setKeyboardShortcut)
+    }
+    
+    /// Responds to 'Check for Updates' action.
+    func checkForUpdatesAction(sender: AnyObject) {
+        _ = delegate?.menu(action: .checkForUpdates)
     }
     
     /// Responds to 'Quit Luxaforus' action.
@@ -185,13 +211,16 @@ enum MenuImageState: String {
 ///
 /// - opening: Menu about to open.
 /// - dimState: Enable/disable light dimming.
+/// - disableUpdatesState: Enable/disable ignoring updates.
 /// - slackIntegration: Add/remove Slack integration.
 /// - setKeyboardShortcut: Action to set keyboard shortcut for Do Not Disturb.
 /// - quit: Action to quit the application.
 enum MenuAction {
     case opening
     case dimState(enabled: Bool)
+    case ignoreUpdatesState(enabled: Bool)
     case slackIntegration
     case setKeyboardShortcut
+    case checkForUpdates
     case quit
 }
