@@ -16,6 +16,8 @@
 		3D46ACE71F066A30000F2AD2 /* LuxaforusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D46ACE61F066A30000F2AD2 /* LuxaforusUITests.swift */; };
 		3D5178FE1F0A37F9002AB64C /* hid.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5178FA1F0A37F9002AB64C /* hid.c */; };
 		3D5178FF1F0A37F9002AB64C /* LXDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5178FD1F0A37F9002AB64C /* LXDevice.m */; };
+		3D65B3751F29E86300138612 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D65B3741F29E86300138612 /* NotificationController.swift */; };
+		3D65B3771F29F0B200138612 /* UpdateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D65B3761F29F0B200138612 /* UpdateController.swift */; };
 		3D6EC27C1F298F55006F2535 /* IOUSBDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6EC27B1F298F55006F2535 /* IOUSBDetector.swift */; };
 		3D83AE8D1F25F7BE00B0FE86 /* SlackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D83AE8C1F25F7BE00B0FE86 /* SlackController.swift */; };
 		3D8F64D61F20E41400D091D3 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8F64D51F20E41400D091D3 /* MenuController.swift */; };
@@ -61,6 +63,8 @@
 		3D5178FB1F0A37F9002AB64C /* hidapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hidapi.h; sourceTree = "<group>"; };
 		3D5178FC1F0A37F9002AB64C /* LXDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXDevice.h; sourceTree = "<group>"; };
 		3D5178FD1F0A37F9002AB64C /* LXDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXDevice.m; sourceTree = "<group>"; };
+		3D65B3741F29E86300138612 /* NotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		3D65B3761F29F0B200138612 /* UpdateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateController.swift; sourceTree = "<group>"; };
 		3D6EC27B1F298F55006F2535 /* IOUSBDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOUSBDetector.swift; sourceTree = "<group>"; };
 		3D83AE8C1F25F7BE00B0FE86 /* SlackController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlackController.swift; sourceTree = "<group>"; };
 		3D8F64D51F20E41400D091D3 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
@@ -113,9 +117,11 @@
 			children = (
 				3DB73B081F21D7B800551EA1 /* LightController.swift */,
 				3D8F64D51F20E41400D091D3 /* MenuController.swift */,
+				3D65B3741F29E86300138612 /* NotificationController.swift */,
 				3DB73B0A1F21DF7B00551EA1 /* PersistenceManager.swift */,
 				3D83AE8C1F25F7BE00B0FE86 /* SlackController.swift */,
 				3D3488A81F20AA3800CCCB4D /* StateObserver.swift */,
+				3D65B3761F29F0B200138612 /* UpdateController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -395,9 +401,11 @@
 				3D8F64D61F20E41400D091D3 /* MenuController.swift in Sources */,
 				3D5178FF1F0A37F9002AB64C /* LXDevice.m in Sources */,
 				3D5178FE1F0A37F9002AB64C /* hid.c in Sources */,
+				3D65B3771F29F0B200138612 /* UpdateController.swift in Sources */,
 				3DD7C6311F28B305008FD362 /* Credentials.m in Sources */,
 				3DB73B0B1F21DF7B00551EA1 /* PersistenceManager.swift in Sources */,
 				3DB73B091F21D7B800551EA1 /* LightController.swift in Sources */,
+				3D65B3751F29E86300138612 /* NotificationController.swift in Sources */,
 				3D3488AB1F20C05A00CCCB4D /* ActionHelper.swift in Sources */,
 				3D83AE8D1F25F7BE00B0FE86 /* SlackController.swift in Sources */,
 				3D3488A91F20AA3800CCCB4D /* StateObserver.swift in Sources */,

@@ -40,10 +40,6 @@ class SlackController {
         self.persistenceManager = persistenceManager
     }
     
-    deinit {
-        clearTimers()
-    }
-    
     /// Attaches state observers when application starts up.
     func attach(delegate theDelegate: SlackControllerDelegate) {
         // Check that a delegate was attached
@@ -70,6 +66,8 @@ class SlackController {
         // Remove open URL handle
         NSAppleEventManager.shared().removeEventHandler(forEventClass: AEEventClass(kInternetEventClass),
                                                         andEventID: AEEventID(kAEGetURL))
+        
+        clearTimers()
         
         delegate = nil
     }

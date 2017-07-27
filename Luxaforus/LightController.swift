@@ -17,7 +17,14 @@ class LightController {
     
     private weak var delegate: LightControllerDelegate? = nil
     
-    init() {
+    /// Attaches USB detector for device.
+    func attach(delegate theDelegate: LightControllerDelegate) {
+        // Check that a delegate was attached
+        if delegate != nil { return }
+        
+        delegate = theDelegate
+        
+        usbDetector = IOUSBDetector(vendorID: Int(kLuxaforVendorId), productID: Int(kLuxaforProductId))
         usbDetector?.callbackQueue = DispatchQueue.global()
         usbDetector?.callback = { (detector, event, service) in
             let connected = event == .matched
@@ -31,18 +38,6 @@ class LightController {
                 }
             }
         }
-    }
-    
-    deinit {
-        usbDetector?.callback = nil
-    }
-    
-    /// Attaches USB detector for device.
-    func attach(delegate theDelegate: LightControllerDelegate) {
-        // Check that a delegate was attached
-        if delegate != nil { return }
-        
-        delegate = theDelegate
         
         if usbDetector?.startDetection() == false {
             NSLog("Light: failed to start USB detector")
@@ -55,6 +50,8 @@ class LightController {
         if delegate == nil { return }
      
         usbDetector?.stopDetection()
+        usbDetector?.callback = nil
+        usbDetector = nil
         
         delegate = nil
     }

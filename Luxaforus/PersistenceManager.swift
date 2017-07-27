@@ -12,6 +12,8 @@ import KeychainSwift
 private let kKeychainPrefix = "Luxaforus"
 
 private let kKeyDimmed = "dimLight"
+private let kKeyIgnoreUpdates = "ignoreUpdates"
+private let kKeyLatestUpdate = "latestUpdate"
 
 private let kKeySlackToken = "\(kKeychainPrefix)-SlackToken"
 
@@ -32,6 +34,34 @@ class PersistenceManager {
     /// - Parameter isDimmed: True for dimmed, false otherwise.
     func set(dimmed isDimmed: Bool) {
         defaults.set(isDimmed, forKey: kKeyDimmed)
+    }
+    
+    /// Fetches disable updates state.
+    ///
+    /// - Returns: True to ignore updates, false otherwise.
+    func fetchIgnoreUpdates() -> Bool {
+        return defaults.bool(forKey: kKeyIgnoreUpdates)
+    }
+    
+    /// Persists ignore updates state.
+    ///
+    /// - Parameter isDisabled: True to ignore updates, false otherwise.
+    func set(ignoreUpdates isDisabled: Bool) {
+        defaults.set(isDisabled, forKey: kKeyIgnoreUpdates)
+    }
+    
+    /// Fetches latest update version.
+    ///
+    /// - Returns: Latest update version or nil.
+    func fetchLatestUpdate() -> String? {
+        return defaults.string(forKey: kKeyLatestUpdate)
+    }
+    
+    /// Persists latest update version.
+    ///
+    /// - Parameter update: Latest update version.
+    func set(latestUpdate update: String?) {
+        defaults.set(update, forKey: kKeyLatestUpdate)
     }
     
     /// Fetches Slack token.
