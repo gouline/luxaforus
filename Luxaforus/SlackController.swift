@@ -16,6 +16,8 @@ private let kApiUrl = "\(kBaseUrl)/api"
 /// Redirect URL for auth calls.
 private let kRedirectUrl = "https://traversal.space/luxaforus/slack"
 
+private let kSnoozePeriod = 60 // minutes
+
 class SlackController {
     
     private let persistenceManager: PersistenceManager
@@ -24,7 +26,9 @@ class SlackController {
     
     private var accessToken: String?
     
-    private var isSnoozed: Bool?
+    private var isSnoozed: Bool? = nil
+    
+    private var snoozeTimer: Timer?
     
     var isLoggedIn: Bool {
         get {
@@ -36,8 +40,15 @@ class SlackController {
         self.persistenceManager = persistenceManager
     }
     
+    deinit {
+        clearTimers()
+    }
+    
     /// Attaches state observers when application starts up.
     func attach(delegate theDelegate: SlackControllerDelegate) {
+        // Check that a delegate was attached
+        if delegate != nil { return }
+        
         delegate = theDelegate
         
         // Check current state
@@ -54,9 +65,7 @@ class SlackController {
     /// Detaches state observers when application closes.
     func detach() {
         // Check that a delegate was attached
-        if delegate == nil {
-            return
-        }
+        if delegate == nil { return }
         
         // Remove open URL handle
         NSAppleEventManager.shared().removeEventHandler(forEventClass: AEEventClass(kInternetEventClass),
@@ -79,6 +88,7 @@ class SlackController {
         alert.addButton(withTitle: "Remove")
         alert.addButton(withTitle: "Cancel")
         if alert.runModal() == NSAlertFirstButtonReturn {
+            clearTimers()
             saveOAuthSession(withToken: nil)
         }
     }
@@ -87,11 +97,22 @@ class SlackController {
     ///
     /// - Parameter isSnoozed: True if snoozed, false otherwise.
     func update(snoozed isSnoozed: Bool) {
-        if isLoggedIn && self.isSnoozed != isSnoozed {
+        if isLoggedIn && ((self.isSnoozed == nil && isSnoozed) || (self.isSnoozed != nil && self.isSnoozed != isSnoozed)) {
             self.isSnoozed = isSnoozed
             if isSnoozed {
                 requestSetSnooze()
+                
+                // Update snooze state 1 minute before it expires
+                let snoozeTimerInterval = TimeInterval((kSnoozePeriod - 1) * 60)
+                snoozeTimer = Timer.scheduledTimer(withTimeInterval: snoozeTimerInterval, repeats: false, block: { (t) in
+                    NSLog("Slack: renewing snooze")
+                    self.isSnoozed = false
+                    self.update(snoozed: true)
+                })
+                NSLog("Slack: timer started %.0f", snoozeTimerInterval)
             } else {
+                clearTimers()
+                
                 requestEndDnd()
             }
         }
@@ -163,17 +184,16 @@ class SlackController {
     /// Requests 'dnd.setSnooze' to enable snooze mode.
     private func requestSetSnooze() {
         let params = authenticatedParams([
-            "num_minutes": String(60 * 24)
+            "num_minutes": String(kSnoozePeriod)
         ])
         _ = Alamofire.request("\(kApiUrl)/dnd.setSnooze", method: .post, parameters: params).responseJSON { response in
             let (ok, _) = self.check(response: response)
             if ok {
                 NSLog("Slack: dnd.setSnooze success")
-                self.isSnoozed = true
             } else {
                 NSLog("Slack: dnd.setSnooze failure")
-                self.isSnoozed = nil
             }
+            self.isSnoozed = true
         }
     }
     
@@ -184,11 +204,10 @@ class SlackController {
             let (ok, _) = self.check(response: response)
             if ok {
                 NSLog("Slack: dnd.endSnooze success")
-                self.isSnoozed = false
             } else {
                 NSLog("Slack: dnd.endSnooze failure")
-                self.isSnoozed = nil
             }
+            self.isSnoozed = false
         }
     }
     
@@ -214,10 +233,10 @@ class SlackController {
             let json = JSON(value)
             if let error = json["error"].string {
                 if error == "invalid_auth" || error == "not_authed" {
-                    print("Slack: API error=%@, removing token", error)
+                    print("Slack: API error=\(error), removing token")
                     saveOAuthSession(withToken: nil)
                 } else {
-                    print("Slack: API error=%@", error)
+                    print("Slack: API error=\(error)")
                 }
                 return (false, json)
             } else {
@@ -239,6 +258,14 @@ class SlackController {
         accessToken = token
         persistenceManager.set(slackToken: token)
         delegate?.slackController(stateChanged: isLoggedIn)
+    }
+    
+    /// Clears async events between snooze calls.
+    private func clearTimers() {
+        snoozeTimer?.invalidate()
+        snoozeTimer = nil
+        
+        NSLog("Slack: timer cleared")
     }
     
     // MARK: - Messages

@@ -9,10 +9,10 @@
 #import "LXDevice.h"
 #include "hidapi.h"
 
-#define kLuxaforVendorId   0x04d8
-#define kLuxafotProcuctId  0xf372
-
 #define kLuxaforOperationSize 9
+
+const ushort kLuxaforVendorId = 0x04d8;
+const ushort kLuxaforProductId = 0xf372;
 
 @implementation LXDevice
 
@@ -64,7 +64,7 @@
 
 - (void)performLuxoforOperation:(unsigned char *)luxoforOperation
 {
-    hid_device *hidHandle = hid_open(kLuxaforVendorId, kLuxafotProcuctId, NULL);
+    hid_device *hidHandle = hid_open(kLuxaforVendorId, kLuxaforProductId, NULL);
     
     if (hidHandle != NULL) {
         hid_write(hidHandle, luxoforOperation, kLuxaforOperationSize);
@@ -74,7 +74,7 @@
 
 - (BOOL)connected
 {
-    hid_device *hidHandle = hid_open(kLuxaforVendorId, kLuxafotProcuctId, NULL);
+    hid_device *hidHandle = hid_open(kLuxaforVendorId, kLuxaforProductId, NULL);
     BOOL connected = hidHandle != NULL;
     
     if (connected) {

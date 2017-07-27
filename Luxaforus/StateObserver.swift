@@ -30,6 +30,9 @@ class StateObserver: NSObject {
     
     /// Attaches state observers when application starts up.
     func attach(delegate theDelegate: StateObserverDelegate) {
+        // Check that a delegate was attached
+        if delegate != nil { return }
+        
         delegate = theDelegate
         
         // Add screen lock/unlock observers
@@ -52,9 +55,7 @@ class StateObserver: NSObject {
     /// Detaches state observers when application closes.
     func detach() {
         // Check that a delegate was attached
-        if delegate == nil {
-            return
-        }
+        if delegate == nil { return }
         
         // Remove Do Not Disturb mode observer
         notificationCenterDefaults?.removeObserver(self, forKeyPath: "doNotDisturb")
@@ -138,7 +139,6 @@ protocol StateObserverDelegate: class {
 /// - doNotDisturbOn: Do Not Disturb enabled (screen unlocked).
 /// - doNotDisturbOff: Do Not Diturb disabled (screen unlocked).
 /// - screenLocked: Screen locked (or sleep mode).
-/// - urlHandled: URL scheme handled.
 /// - detached: Observer got detached.
 enum StateObserverValue {
     case doNotDisturbOn

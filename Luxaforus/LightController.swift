@@ -11,8 +11,53 @@ import Cocoa
 class LightController {
     
     private var brightness: CGFloat = 1.0
-    
     private var currentColor: NSColor? = nil
+    
+    private var usbDetector = IOUSBDetector(vendorID: Int(kLuxaforVendorId), productID: Int(kLuxaforProductId))
+    
+    private weak var delegate: LightControllerDelegate? = nil
+    
+    init() {
+        usbDetector?.callbackQueue = DispatchQueue.global()
+        usbDetector?.callback = { (detector, event, service) in
+            let connected = event == .matched
+            
+            self.delegate?.lightController(connectedChanged: connected)
+            
+            if connected {
+                if let color = self.currentColor {
+                    sleep(2) // Not great, but have to wait for reconnection flashes to finish.
+                    self.update(color: color)
+                }
+            }
+        }
+    }
+    
+    deinit {
+        usbDetector?.callback = nil
+    }
+    
+    /// Attaches USB detector for device.
+    func attach(delegate theDelegate: LightControllerDelegate) {
+        // Check that a delegate was attached
+        if delegate != nil { return }
+        
+        delegate = theDelegate
+        
+        if usbDetector?.startDetection() == false {
+            NSLog("Light: failed to start USB detector")
+        }
+    }
+    
+    /// Detaches USB detector for device.
+    func detach() {
+        // Check that a delegate was attached
+        if delegate == nil { return }
+     
+        usbDetector?.stopDetection()
+        
+        delegate = nil
+    }
     
     /// Updates current color of the light.
     ///
@@ -63,6 +108,15 @@ class LightController {
         }
         return nil
     }
+    
+}
+
+protocol LightControllerDelegate: class {
+    
+    /// Light controller connection state changed.
+    ///
+    /// - Parameter connected: True when connected, false when disconnected.
+    func lightController(connectedChanged connected: Bool)
     
 }
 
