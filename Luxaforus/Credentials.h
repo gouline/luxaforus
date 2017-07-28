@@ -6,5 +6,7 @@
 //  Copyright © 2017 Traversal Space. All rights reserved.
 //
 
-extern NSString* const kSlackClientId;
-extern NSString* const kSlackClientSecret;
+@import Foundation;
+
+extern NSString *const kSlackClientId;
+extern NSString *const kSlackClientSecret;

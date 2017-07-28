@@ -75,8 +75,8 @@ class PersistenceManager {
     ///
     /// - Parameter token: Current Slack token or null.
     func set(slackToken token: String?) {
-        if token != nil {
-            keychain.set(token!, forKey: kKeySlackToken)
+        if let token = token {
+            keychain.set(token, forKey: kKeySlackToken)
         } else {
             keychain.delete(kKeySlackToken)
         }

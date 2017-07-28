@@ -143,13 +143,16 @@ class SlackController {
     
     /// Open authorize link in the browser.
     private func openAuthorizeLink() {
-        var url = URLComponents(string: "\(kBaseUrl)/oauth/authorize")
-        url?.queryItems = [
+        var urlComponents = URLComponents(string: "\(kBaseUrl)/oauth/authorize")
+        urlComponents?.queryItems = [
             URLQueryItem(name: "client_id", value: kSlackClientId),
             URLQueryItem(name: "scope", value: "dnd:write"),
             URLQueryItem(name: "redirect_uri", value: kRedirectUrl)
         ]
-        NSWorkspace.shared().open(url!.url!)
+
+        if let url = urlComponents?.url {
+            NSWorkspace.shared().open(url)
+        }
     }
     
     /// Requests 'oauth.access' profile.
@@ -164,11 +167,11 @@ class SlackController {
         ]
         _ = Alamofire.request("\(kApiUrl)/oauth.access", method: .post, parameters: params).responseJSON { response in
             let (ok, json) = self.check(response: response)
-            if ok {
+            if ok, let json = json {
                 NSLog("Slack: oauth.access success")
-                if let accessToken = json!["access_token"].string {
+                if let accessToken = json["access_token"].string {
                     self.saveOAuthSession(withToken: accessToken)
-                    self.authSuccess(withTeam: json!["team_name"].string ?? "Unknown")
+                    self.authSuccess(withTeam: json["team_name"].string ?? "Unknown")
                 } else {
                     self.authFailure(withMessage: "Access token not returned.")
                 }
@@ -186,11 +189,7 @@ class SlackController {
         ])
         _ = Alamofire.request("\(kApiUrl)/dnd.setSnooze", method: .post, parameters: params).responseJSON { response in
             let (ok, _) = self.check(response: response)
-            if ok {
-                NSLog("Slack: dnd.setSnooze success")
-            } else {
-                NSLog("Slack: dnd.setSnooze failure")
-            }
+            NSLog("Slack: dnd.setSnooze \(ok ? "success" : "failure")")
             self.isSnoozed = true
         }
     }
@@ -200,11 +199,7 @@ class SlackController {
         let params = authenticatedParams()
         _ = Alamofire.request("\(kApiUrl)/dnd.endSnooze", method: .post, parameters: params).responseJSON { response in
             let (ok, _) = self.check(response: response)
-            if ok {
-                NSLog("Slack: dnd.endSnooze success")
-            } else {
-                NSLog("Slack: dnd.endSnooze failure")
-            }
+            NSLog("Slack: dnd.endSnooze \(ok ? "success" : "failure")")
             self.isSnoozed = false
         }
     }
