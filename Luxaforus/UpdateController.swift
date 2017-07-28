@@ -52,10 +52,10 @@ class UpdateController {
                             notification.title = messageText
                             notification.informativeText = informationalText
                             notification.identifier = "update-\(version)"
-                            self.notificationManager.deliver(notification, activateCallback: { notification in
-                                self.downloadUpdate(withUrl: url)
+                            self.notificationManager.deliver(notification) { notification in
+                                self.downloadUpdate(url: url)
                                 return true
-                            })
+                            }
                         } else {
                             // Manual checks raise alerts
                             let alert = NSAlert()
@@ -65,7 +65,7 @@ class UpdateController {
                             alert.addButton(withTitle: "Download")
                             alert.addButton(withTitle: "Cancel")
                             if alert.runModal() == NSAlertFirstButtonReturn {
-                                self.downloadUpdate(withUrl: url)
+                                self.downloadUpdate(url: url)
                             }
                         }
                     }
@@ -138,7 +138,7 @@ class UpdateController {
     /// Opens browser to download latest version.
     ///
     /// - Parameter url: Download URL for latest version.
-    private func downloadUpdate(withUrl url: String) {
+    private func downloadUpdate(url: String) {
         NSWorkspace.shared().open(URL(string: url)!)
     }
     

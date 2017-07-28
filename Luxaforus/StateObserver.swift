@@ -9,9 +9,12 @@
 import Cocoa
 
 class StateObserver: NSObject {
-    
-    private let notificationCenterDefaults: UserDefaults?
-    
+
+    private let notificationCenterDefaults = UserDefaults(suiteName: "com.apple.notificationcenterui")
+
+    // Key path for Do not disturb setting under the com.apple.notificationcenterui user defaults suite
+    private let kDndKeyPath = "doNotDisturb"
+
     private weak var delegate: StateObserverDelegate? = nil
     
     private(set) var isDoNotDisturb = false
@@ -24,8 +27,9 @@ class StateObserver: NSObject {
         }
     }
 
-    override init() {
-        notificationCenterDefaults = UserDefaults(suiteName: "com.apple.notificationcenterui")
+    deinit {
+        // Ensure observations are not leaked if object is deallocated
+        detach()
     }
     
     /// Attaches state observers when application starts up.
@@ -46,7 +50,7 @@ class StateObserver: NSObject {
                                                             object: nil)
         
         // Add Do Not Disturb mode observer
-        notificationCenterDefaults?.addObserver(self, forKeyPath: "doNotDisturb", options: .new, context: nil)
+        notificationCenterDefaults?.addObserver(self, forKeyPath: kDndKeyPath, options: .new, context: nil)
         
         // Check initial value for Do Not Disturb mode
         reload()
@@ -58,7 +62,7 @@ class StateObserver: NSObject {
         if delegate == nil { return }
         
         // Remove Do Not Disturb mode observer
-        notificationCenterDefaults?.removeObserver(self, forKeyPath: "doNotDisturb")
+        notificationCenterDefaults?.removeObserver(self, forKeyPath: kDndKeyPath)
         
         // Remove screen lock/unlock observers
         DistributedNotificationCenter.default().removeObserver(self)
@@ -76,13 +80,13 @@ class StateObserver: NSObject {
     
     /// Refreshes states that can be read without notifications.
     func reload() {
-        update(isDoNotDisturb: notificationCenterDefaults?.bool(forKey: "doNotDisturb") ?? false)
+        update(isDoNotDisturb: notificationCenterDefaults?.bool(forKey: kDndKeyPath) ?? false)
     }
     
     // MARK: - Observers
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "doNotDisturb" {
+        if keyPath == kDndKeyPath {
             if let newValue = change?[.newKey] as? Bool { //__NSCFBoolean
                 update(isDoNotDisturb: newValue)
             }
@@ -137,7 +141,7 @@ protocol StateObserverDelegate: class {
 /// State representation value.
 ///
 /// - doNotDisturbOn: Do Not Disturb enabled (screen unlocked).
-/// - doNotDisturbOff: Do Not Diturb disabled (screen unlocked).
+/// - doNotDisturbOff: Do Not Disturb disabled (screen unlocked).
 /// - screenLocked: Screen locked (or sleep mode).
 /// - detached: Observer got detached.
 enum StateObserverValue {

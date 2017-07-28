@@ -58,9 +58,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
         stateObserver.attach(delegate: self)
         
         // Delay update check to avoid overwhelming user with information
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
             self.updateController.check(automatic: true)
-        })
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -116,8 +116,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
 
         menuController.update(imageState: imageState)
         
-        if snoozed != nil {
-            slackController.update(snoozed: snoozed!)
+        if let snoozed = snoozed {
+            slackController.update(snoozed: snoozed)
         }
     }
     
