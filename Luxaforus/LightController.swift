@@ -119,8 +119,8 @@ protocol LightControllerDelegate: class {
 
 /// Color states for the light.
 class LightColor {
-    static let available = NSColor.green
-    static let busy = NSColor.red
+    static let available = NSColor.init(red: 0.0, green: 0.7, blue: 0.1, alpha: 1.0)
+    static let busy = NSColor.init(red: 0.7, green: 0.0, blue: 0.0, alpha: 1.0)
     static let locked = NSColor.black
 }
 

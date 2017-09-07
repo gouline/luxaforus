@@ -31,15 +31,13 @@ const ushort kLuxaforProductId = 0xf372;
     CGFloat alpha = color.alphaComponent;
     int max = 255;
     
-    char red, green, blue;
-    if (color.colorSpaceName == NSCalibratedWhiteColorSpace) {
+    unsigned char red, green, blue;
+    if (color.colorSpaceName == NSCalibratedWhiteColorSpace || color.colorSpaceName == NSDeviceWhiteColorSpace) {
         red = green = blue = (char)(color.whiteComponent * alpha * max);
-    } else if (color.colorSpaceName == NSCalibratedRGBColorSpace) {
-        red = (char)(color.redComponent * alpha * max);
-        green = (char)(color.greenComponent * alpha * max);
-        blue = (char)(color.blueComponent * alpha * max);
-    } else {
-        return;
+    } else  {
+        red = (unsigned char)(color.redComponent * alpha * max);
+        green = (unsigned char)(color.greenComponent * alpha * max);
+        blue = (unsigned char)(color.blueComponent * alpha * max);
     }
     
     unsigned char luxaforOperation[kLuxaforOperationSize];
