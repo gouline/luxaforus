@@ -22,3 +22,7 @@ While this application is open source, some credentials linked to specific accou
 Below are some useful links on how to register your own credentials:
 
 * Slack API: [Creating apps](https://api.slack.com/slack-apps#creating_apps)
+
+## License
+
+This project is licensed under the terms of the MIT license. See the [LICENSE](LICENSE) file.
