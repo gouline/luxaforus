@@ -41,8 +41,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
             alert.informativeText = "You must be running macOS before OS X 10.8, which is currently not supported."
             alert.alertStyle = .critical
             alert.addButton(withTitle: "OK")
-            if alert.runModal() == NSAlertFirstButtonReturn {
-                NSApplication.shared().terminate(self)
+            if alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn {
+                NSApplication.shared.terminate(self)
             }
         }
         
@@ -143,13 +143,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, StateObserverDelegate, MenuC
             alert.alertStyle = .informational
             alert.addButton(withTitle: "Proceed")
             alert.addButton(withTitle: "Cancel")
-            if alert.runModal() == NSAlertFirstButtonReturn {
+            if alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn {
                 ActionHelper.preferencesKeyboardShortcuts()
             }
         case .checkForUpdates:
             updateController.check(automatic: false)
         case .quit:
-            NSApplication.shared().terminate(self)
+            NSApplication.shared.terminate(self)
         }
         return true
     }

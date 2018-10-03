@@ -22,7 +22,7 @@ class MenuController: NSObject, NSMenuDelegate {
     weak var delegate: MenuControllerDelegate? = nil
 
     override init() {
-        statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
+        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         
         connectionItem = NSMenuItem(title: "", action: nil, keyEquivalent: "")
         connectionItem.isEnabled = false
@@ -117,14 +117,14 @@ class MenuController: NSObject, NSMenuDelegate {
     ///
     /// - Parameter isDimmed: True if dimmed, false otherwise.
     func update(dimState isDimmed: Bool) {
-        dimStateItem.state = isDimmed ? NSOnState : NSOffState
+        dimStateItem.state = isDimmed ? NSControl.StateValue.on : NSControl.StateValue.off
     }
     
     /// Updates ignore updates on/off state.
     ///
     /// - Parameter isIgnored: True if ignore, false otherwise.
     func update(ignoreUpdates isIgnored: Bool) {
-        ignoreUpdatesItem.state = isIgnored ? NSOnState : NSOffState
+        ignoreUpdatesItem.state = isIgnored ? NSControl.StateValue.on : NSControl.StateValue.off
     }
     
     // MARK: - NSMenuDelegate
@@ -136,38 +136,38 @@ class MenuController: NSObject, NSMenuDelegate {
     // MARK: - Selectors
     
     /// Responds to 'Dim light' action.
-    func changeDimStateAction(sender: AnyObject) {
-        let newEnabled = !(dimStateItem.state == NSOnState)
+    @objc func changeDimStateAction(sender: AnyObject) {
+        let newEnabled = !(dimStateItem.state == NSControl.StateValue.on)
         if delegate?.menu(action: .dimState(enabled: newEnabled)) ?? false {
             update(dimState: newEnabled)
         }
     }
     
     /// Responds to 'Ignore Updates' action.
-    func changeIgnoreUpdatesAction(sender: AnyObject) {
-        let newEnabled = !(ignoreUpdatesItem.state == NSOnState)
+    @objc func changeIgnoreUpdatesAction(sender: AnyObject) {
+        let newEnabled = !(ignoreUpdatesItem.state == NSControl.StateValue.on)
         if delegate?.menu(action: .ignoreUpdatesState(enabled: newEnabled)) ?? false {
             update(ignoreUpdates: newEnabled)
         }
     }
     
     /// Add/remove Slack integration action.
-    func slackIntegrationAction(sender: AnyObject) {
+    @objc func slackIntegrationAction(sender: AnyObject) {
         _ = delegate?.menu(action: .slackIntegration)
     }
     
     /// Responds to 'Set keyboard shortcut' action.
-    func setKeyboardShortcutAction(sender: AnyObject) {
+    @objc func setKeyboardShortcutAction(sender: AnyObject) {
         _ = delegate?.menu(action: .setKeyboardShortcut)
     }
     
     /// Responds to 'Check for Updates' action.
-    func checkForUpdatesAction(sender: AnyObject) {
+    @objc func checkForUpdatesAction(sender: AnyObject) {
         _ = delegate?.menu(action: .checkForUpdates)
     }
     
     /// Responds to 'Quit Luxaforus' action.
-    func quitAction(sender: AnyObject) {
+    @objc func quitAction(sender: AnyObject) {
         _ = delegate?.menu(action: .quit)
     }
     
