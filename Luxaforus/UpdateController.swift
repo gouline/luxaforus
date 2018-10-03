@@ -64,7 +64,7 @@ class UpdateController {
                             alert.alertStyle = .informational
                             alert.addButton(withTitle: "Download")
                             alert.addButton(withTitle: "Cancel")
-                            if alert.runModal() == NSAlertFirstButtonReturn {
+                            if alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn {
                                 self.downloadUpdate(url: url)
                             }
                         }
@@ -139,7 +139,7 @@ class UpdateController {
     ///
     /// - Parameter url: Download URL for latest version.
     private func downloadUpdate(url: String) {
-        NSWorkspace.shared().open(URL(string: url)!)
+        NSWorkspace.shared.open(URL(string: url)!)
     }
     
     /// Split string version into integer parts.
@@ -148,7 +148,7 @@ class UpdateController {
     /// - Returns: Array of integer parts or nil.
     private func split(version: String) -> [Int]? {
         var intParts = [Int]()
-        let parts = version.characters.split(separator: ".")
+        let parts = version.split(separator: ".")
         for part in parts {
             if let intPart = Int(String(part)) {
                 intParts.append(intPart)
@@ -165,7 +165,7 @@ class UpdateController {
     /// - Returns: Sanitized version string.
     private func sanitize(version: String) -> String {
         var theVersion = version
-        if version.characters.count > 0 && theVersion.hasPrefix("v") {
+        if version.count > 0 && theVersion.hasPrefix("v") {
             theVersion.remove(at: version.startIndex)
         }
         return theVersion

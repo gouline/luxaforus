@@ -85,7 +85,7 @@ class SlackController {
         alert.alertStyle = .warning
         alert.addButton(withTitle: "Remove")
         alert.addButton(withTitle: "Cancel")
-        if alert.runModal() == NSAlertFirstButtonReturn {
+        if alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn {
             clearTimers()
             saveOAuthSession(withToken: nil)
         }
@@ -151,7 +151,7 @@ class SlackController {
         ]
 
         if let url = urlComponents?.url {
-            NSWorkspace.shared().open(url)
+            NSWorkspace.shared.open(url)
         }
     }
     
