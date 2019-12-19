@@ -277,7 +277,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 1100;
-				ORGANIZATIONNAME = "Traversal Space";
+				ORGANIZATIONNAME = "Traversal.space";
 				TargetAttributes = {
 					3D46ACC51F066A30000F2AD2 = {
 						CreatedOnToolsVersion = 8.3.3;

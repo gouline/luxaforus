@@ -3,7 +3,7 @@
 //  LuxaforusUITests
 //
 //  Created by Mike Gouline on 30/6/17.
-//  Copyright © 2017 Traversal Space. All rights reserved.
+//  Copyright © 2017 Traversal.space. All rights reserved.
 //
 
 import XCTest

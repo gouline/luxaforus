@@ -3,7 +3,7 @@
 //  Luxaforus
 //
 //  Created by mgouline on 27/7/17.
-//  Copyright © 2017 Traversal Space. All rights reserved.
+//  Copyright © 2017 Traversal.space. All rights reserved.
 //
 
 import Darwin
