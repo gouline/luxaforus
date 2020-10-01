@@ -2,6 +2,8 @@
 
 Minimalist [Luxafor](https://luxafor.com/) client application for macOS.
 
+**NOTE:** Luxaforus is an open-source project that simply uses the Luxafor API and is not affiliated with Luxafor. For any support issues, please contact Luxafor directly! No planned development is happening on this project, features are added ad-hoc when developers have a need for them, so feature requests will not be attended do. However, you are welcome to implement features yourself and contribute them - your pull request will be happily reviewed.
+
 ## How it works
 
 There are no explicit controls for the light, instead the light turns red when the 'Do Not Disturb' mode is enabled in the macOS Notification Center and green when it's disabled. When your computer goes to sleep mode or the application is quitting, the light will be turned off.
