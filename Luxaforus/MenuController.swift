@@ -173,7 +173,7 @@ class MenuController: NSObject, NSMenuDelegate {
     
 }
 
-protocol MenuControllerDelegate: class {
+protocol MenuControllerDelegate: AnyObject {
     
     /// Menu action received.
     ///

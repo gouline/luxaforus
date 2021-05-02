@@ -131,7 +131,7 @@ class StateObserver: NSObject {
     
 }
 
-protocol StateObserverDelegate: class {
+protocol StateObserverDelegate: AnyObject {
 
     /// State changed to a new one.
     func stateObserver(valueChanged value: StateObserverValue)

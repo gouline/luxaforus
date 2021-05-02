@@ -108,7 +108,7 @@ class LightController {
     
 }
 
-protocol LightControllerDelegate: class {
+protocol LightControllerDelegate: AnyObject {
     
     /// Light controller connection state changed.
     ///

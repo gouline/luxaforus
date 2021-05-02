@@ -289,7 +289,7 @@ class SlackController {
     
 }
 
-protocol SlackControllerDelegate: class {
+protocol SlackControllerDelegate: AnyObject {
     
     /// Logged in status changed.
     ///
