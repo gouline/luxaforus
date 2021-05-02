@@ -277,7 +277,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 1100;
-				ORGANIZATIONNAME = "Traversal.space";
+				ORGANIZATIONNAME = "Mike Gouline";
 				TargetAttributes = {
 					3D46ACC51F066A30000F2AD2 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -572,7 +572,7 @@
 				DEVELOPMENT_TEAM = QZ6RQPA63Y;
 				INFOPLIST_FILE = Luxaforus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = space.traversal.Luxaforus;
+				PRODUCT_BUNDLE_IDENTIFIER = net.gouline.Luxaforus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Luxaforus/Luxaforus-Bridging-Header.h";
@@ -594,7 +594,7 @@
 				DEVELOPMENT_TEAM = QZ6RQPA63Y;
 				INFOPLIST_FILE = Luxaforus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = space.traversal.Luxaforus;
+				PRODUCT_BUNDLE_IDENTIFIER = net.gouline.Luxaforus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Luxaforus/Luxaforus-Bridging-Header.h";
@@ -611,7 +611,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = LuxaforusTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = space.traversal.LuxaforusTests;
+				PRODUCT_BUNDLE_IDENTIFIER = net.gouline.LuxaforusTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 5.0;
@@ -627,7 +627,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = LuxaforusTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = space.traversal.LuxaforusTests;
+				PRODUCT_BUNDLE_IDENTIFIER = net.gouline.LuxaforusTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 5.0;
@@ -642,7 +642,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = LuxaforusUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = space.traversal.LuxaforusUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = net.gouline.LuxaforusUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 5.0;
@@ -657,7 +657,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = LuxaforusUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = space.traversal.LuxaforusUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = net.gouline.LuxaforusUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 5.0;

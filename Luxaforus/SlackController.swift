@@ -3,7 +3,7 @@
 //  Luxaforus
 //
 //  Created by Mike Gouline on 24/7/17.
-//  Copyright © 2017 Traversal.space. All rights reserved.
+//  Copyright © 2017 Mike Gouline. All rights reserved.
 //
 
 import Cocoa
@@ -14,7 +14,7 @@ private let kBaseUrl = "https://slack.com"
 private let kApiUrl = "\(kBaseUrl)/api"
 
 /// Redirect URL for auth calls.
-private let kRedirectUrl = "https://traversal.space/luxaforus/slack"
+private let kRedirectUrl = "https://gouline.net/luxaforus/slack"
 
 private let kSnoozePeriod = 60 // minutes
 

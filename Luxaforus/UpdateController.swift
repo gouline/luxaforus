@@ -3,7 +3,7 @@
 //  Luxaforus
 //
 //  Created by Mike Gouline on 27/7/17.
-//  Copyright © 2017 Traversal.space. All rights reserved.
+//  Copyright © 2017 Mike Gouline. All rights reserved.
 //
 
 import Cocoa
@@ -32,7 +32,7 @@ class UpdateController {
         
         checkInProgress = true
         
-        _ = Alamofire.request("https://api.github.com/repos/traversals/luxaforus/releases/latest").responseJSON { response in
+        _ = Alamofire.request("https://api.github.com/repos/gouline/luxaforus/releases/latest").responseJSON { response in
             var updateSuccess = false
             
             switch response.result {
